@@ -50,6 +50,8 @@ double pitch = 0.0;
 double yaw = 0.0;
 float angle = 0.0f;
 bool enabled = false;
+bool hadDoorCancel;
+bool hadChestStorage;
 
 void move(daPy_lk_c* actor) {
     // Avoid crashing by testing this pointer
@@ -126,6 +128,19 @@ KEEP_FUNC void execute() {
         return;
     }
     if (g_moveLinkEnabled) {
+        if (!enabled) {
+            u16* collision_ptr = dComIfGs_getCollision();
+            if ((*collision_ptr & 0x4004) == 0x4004) {
+                hadDoorCancel = true;
+                hadChestStorage = false;
+            } else if ((*collision_ptr & 0x4004) == 0x4) {
+                hadDoorCancel = false;
+                hadChestStorage = true;
+            } else {
+                hadDoorCancel = false;
+                hadChestStorage = false;
+            }
+        }
         // Lock the camera to allow for its movement
         dComIfGp_getPEvtManager()->mCameraPlay = 1;
 
@@ -165,6 +180,14 @@ KEEP_FUNC void execute() {
             player_p->mAcch.ClrWallNone();
             player_p->mAcch.ClrRoofNone();
             player_p->mAcch.OffLineCheckNone();
+
+            u16* collision_ptr = dComIfGs_getCollision();
+            if (hadDoorCancel) {
+                *collision_ptr |= 0x4004;
+            } 
+            if (hadChestStorage) {
+                *collision_ptr |= 0x4;
+            }
 
             // Enable voiding by telling the game Link is midair
             player_p->onModeFlg(0x00000002);
