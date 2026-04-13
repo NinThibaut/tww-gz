@@ -69,6 +69,7 @@ void main() {
     g_modules.push_back(new Module{moveLink_active, "/twwgz/rels/features/moveactor.rel"});
     g_modules.push_back(new Module{rollClipTool_active, "/twwgz/rels/features/rollclip_tool.rel"});
     g_modules.push_back(new Module{pauseBufferInputTool_active, "/twwgz/rels/features/pause_buffer_input_tool.rel"});
+    g_modules.push_back(new Module{turboInputsTool_active, "/twwgz/rels/features/turbo_inputs.rel"});
 
     // Manually nop calls to JUTReport in Map Select, so we can replace them later.
     // This sucks, especially because of multiversion. But it works.

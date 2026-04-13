@@ -17,3 +17,4 @@ bool actorView_active();
 bool moveLink_active();
 bool rollClipTool_active();
 bool pauseBufferInputTool_active();
+bool turboInputsTool_active();

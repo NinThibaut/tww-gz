@@ -64,7 +64,9 @@ KEEP_FUNC ToolsMenu::ToolsMenu(Cursor& cursor)
           {"pause buffer input trainer", PAUSE_BUFFER_INPUT_INDEX, "Train pause buffered input timing with an OSD",
            true, &g_tools[PAUSE_BUFFER_INPUT_INDEX].active},
           {"move link", MOVE_LINK_INDEX, "Move Link around freely by pressing L + R + Y", true,
-           &g_tools[MOVE_LINK_INDEX].active}} {}
+           &g_tools[MOVE_LINK_INDEX].active},
+          {"turbo controller", TURBO_INPUTS_INDEX, "Simulate turbo controller inputs", true,
+           &g_tools[TURBO_INPUTS_INDEX].active}} {}
 
 ToolsMenu::~ToolsMenu() {}
 

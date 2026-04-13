@@ -42,3 +42,7 @@ KEEP_FUNC bool rollClipTool_active() {
 KEEP_FUNC bool pauseBufferInputTool_active() {
     return g_tools[PAUSE_BUFFER_INPUT_INDEX].active;
 }
+
+KEEP_FUNC bool turboInputsTool_active() {
+    return g_tools[TURBO_INPUTS_INDEX].active;
+}
