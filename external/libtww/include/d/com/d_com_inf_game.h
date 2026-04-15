@@ -1617,4 +1617,19 @@ inline u16* dComIfGs_getCollision() {
     return &collision_base_address[0x24B];
 }
 
+inline CameraMatrix dComIfg_getCamPosAndTarget() {
+    CameraMatrix cam;
+    cam.pos = *CAM_POS;
+    cam.target = *CAM_TARGET;
+    return cam;
+}
+
+inline void dComIfg_setCamPosAndTarget(CameraMatrix cam) {
+    Vec* cam_pos = CAM_POS;
+    Vec* cam_target = CAM_TARGET;
+    *cam_pos = cam.pos;
+    *cam_target = cam.target;
+}
+
+
 #endif /* D_COM_D_COM_INF_GAME_H */

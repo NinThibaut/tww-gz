@@ -2,6 +2,7 @@
 #include "global_data.h"
 #include "libtww/include/MSL_C/math.h"
 #include "libtww/include/JSystem/JUtility/JUTGamePad.h"
+#include "libtww/include/addrs.h"
 #include "rels/include/defines.h"
 #include "libtww/include/d/a/d_a_player_main.h"
 #include "menus/menu_tools/include/tools_menu.h"
@@ -25,24 +26,6 @@
 #define WHITE_RGBA 0xFFFFFFFF
 #define LINE_X_OFFSET 20.0f
 
-// Get 2 vectors at a specific memory address.
-// These CAM_TARGET and CAM_POS vectors are special
-// because changing their values actually affect the camera in the game.
-// There sould be a cleaner way to get these vectors
-// but it is not in the decomp files available in gz
-#ifdef NTSCJ
-#define UNK_POINTER1 *(uintptr_t*)0x803AD380
-#endif
-#ifdef NTSCU
-#define UNK_POINTER1 *(uintptr_t*)0x803B9E80
-#endif
-#ifdef PAL
-#define UNK_POINTER1 *(uintptr_t*)0x803C0B80
-#endif
-
-#define UNK_POINTER2 (uintptr_t*)(UNK_POINTER1 + 0x34)
-#define CAM_TARGET (Vec*)(*UNK_POINTER2 + 0x288);
-#define CAM_POS (Vec*)(*UNK_POINTER2 + 0x294);
 
 namespace MoveActor {
 
@@ -54,14 +37,8 @@ bool hadDoorCancel;
 bool hadChestStorage;
 
 void move(daPy_lk_c* actor) {
-    // Avoid crashing by testing this pointer
-    if ((uintptr_t*)(UNK_POINTER1) == NULL) {
-        return;
-    }
-
     // Fetch the camera position and target
-    Vec* cam_target = CAM_TARGET;
-    Vec* cam_pos = CAM_POS;
+    CameraMatrix cam = dComIfg_getCamPosAndTarget();
 
     // Fetch the actor position and angles
     cXyz& actor_pos = actor->current.pos;
@@ -78,18 +55,18 @@ void move(daPy_lk_c* actor) {
     }
 
     // Fix Camera behind link
-    cam_target->x = actor_pos.x;
-    cam_target->y = actor_pos.y + 200.f;
-    cam_target->z = actor_pos.z;
-    cam_pos->z = actor_pos.z - DIST_FROM_ACTOR * cos(angle);
-    cam_pos->x = actor_pos.x - DIST_FROM_ACTOR * sin(angle);
-    cam_pos->y = actor_pos.y + 200.f;
+    cam.target.x = actor_pos.x;
+    cam.target.y = actor_pos.y + 200.f;
+    cam.target.z = actor_pos.z;
+    cam.pos.z = actor_pos.z - DIST_FROM_ACTOR * cos(angle);
+    cam.pos.x = actor_pos.x - DIST_FROM_ACTOR * sin(angle);
+    cam.pos.y = actor_pos.y + 200.f;
 
     // Calculate the pitch and yaw
-    yaw = atan2(cam_target->z - cam_pos->z, cam_target->x - cam_pos->x);
-    double horizontal = sqrtf((cam_target->x - cam_pos->x) * (cam_target->x - cam_pos->x) +
-                              (cam_target->z - cam_pos->z) * (cam_target->z - cam_pos->z));
-    pitch = atan2(cam_target->y - cam_pos->y, horizontal);
+    yaw = atan2(cam.target.z - cam.pos.z, cam.target.x - cam.pos.x);
+    double horizontal = sqrtf((cam.target.x - cam.pos.x) * (cam.target.x - cam.pos.x) +
+                              (cam.target.z - cam.pos.z) * (cam.target.z - cam.pos.z));
+    pitch = atan2(cam.target.y - cam.pos.y, horizontal);
 
     // Calculate the translation
     double dy = LOCK_CAMERA ? 0.0f : VERTICAL_DISPLACEMENT;
@@ -120,6 +97,7 @@ void move(daPy_lk_c* actor) {
     l_debug_current_angle.y = actor_horizontal_angle;
     l_debug_shape_angle.x = actor_verticle_angle;
     l_debug_shape_angle.y = actor_horizontal_angle;
+    dComIfg_setCamPosAndTarget(cam);
 }
 
 KEEP_FUNC void execute() {

@@ -185,6 +185,9 @@
 /* d_com_static */
 #define daArrow_c__m_keep_type_addr 0x803ea04c
 
+/* Unknown pointer useful to change camera pos and target */
+#define UNK_POINTER1 *(uintptr_t*)0x803AD380
+
 #endif
 
 #ifdef NTSCU
@@ -369,6 +372,9 @@
 #define l_debug_current_angle_addr 0x803f6f10
 #define l_debug_shape_angle_addr 0x803f6f18
 #define daArrow_c__m_keep_type_addr 0x803f6b7c
+
+/* Unknown pointer useful to change camera pos and target */
+#define UNK_POINTER1 *(uintptr_t*)0x803B9E80
 
 #endif
 
@@ -555,4 +561,16 @@
 #define l_debug_shape_angle_addr 0x803fe718
 #define daArrow_c__m_keep_type_addr 0x803fe37c
 
+/* Unknown pointer useful to change camera pos and target */
+#define UNK_POINTER1 *(uintptr_t*)0x803C0B80
+
 #endif
+
+// Get 2 vectors at a specific memory address.
+// These CAM_TARGET and CAM_POS vectors are special
+// because changing their values actually affect the camera in the game.
+// There sould be a cleaner way to get these vectors
+// but it is not in the decomp files available in gz
+#define UNK_POINTER2 (uintptr_t*)(UNK_POINTER1 + 0x34)
+#define CAM_TARGET (Vec*)(*UNK_POINTER2 + 0x288);
+#define CAM_POS (Vec*)(*UNK_POINTER2 + 0x294);

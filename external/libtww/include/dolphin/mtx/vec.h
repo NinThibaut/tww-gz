@@ -15,6 +15,11 @@ typedef struct Vec2 {
     f32 x, y;
 } Vec2;
 
+struct CameraMatrix {
+    Vec target;
+    Vec pos;
+};
+
 typedef Vec* VecPtr;
 typedef Vec Point3d;
 typedef Vec* Point3dPtr;
