@@ -99,6 +99,10 @@ KEEP_FUNC void SaveMngSpecial_SetLayer8() {
 
 // =================== SHARED FUNCTIONS ===================
 
+KEEP_FUNC void SaveMngSpecial_GiveChestStorage() {
+    gSaveManager.modifyActor(PROC_PLAYER, [](fopAc_ac_c* actor) { SaveMngSpecial_ChestStorage(actor); });
+}
+
 KEEP_FUNC void SaveMngSpecial_BombsSwim_FHSwim_NoMSS() {
     SaveMngSpecial_SetLayer0();
 
@@ -539,4 +543,202 @@ KEEP_FUNC void SaveMngSpecial_DRCClimb_PMG() {
 
 KEEP_FUNC void SaveMngSpecial_FWSmallKeySkip_PMG() {
     gSaveManager.modifyActor(PROC_PLAYER, [](fopAc_ac_c* actor) { SaveMngSpecial_ChestStorage(actor); });
+}
+
+// =================== HUNDO FUNCTIONS ===================
+
+KEEP_FUNC void SaveMngSpecial_MailGame_Hundo() {
+    if (g_customSaveSpawns) {
+        gSaveManager.modifyActor(PROC_PLAYER, [](fopAc_ac_c* actor) {
+            SaveMngSpecial_SetActorPosAndYaw(actor, -276.0f, 700.0f, 450.0f, -158);
+        });
+    }
+}
+
+KEEP_FUNC void SaveMngSpecial_DRC_BK_Skip_Hundo() {
+    if (g_customSaveSpawns) {
+        gSaveManager.modifyActor(PROC_PLAYER, [](fopAc_ac_c* actor) {
+            SaveMngSpecial_SetActorPosAndYaw(actor, 0.0f, 5500.0f, 4204.0f, -32768);
+        });
+    }
+}
+
+KEEP_FUNC void SaveMngSpecial_WindfallSwim_Hundo() {
+    if (g_customSaveSpawns) {
+        gSaveManager.modifyActor(PROC_PLAYER, [](fopAc_ac_c* actor) {
+            SaveMngSpecial_SetActorPosAndYaw(actor, 201667.0f, 185.0f, -197715.0f, -5124);
+        });
+    }
+}
+
+KEEP_FUNC void SaveMngSpecial_WindfallToFHSwim_Hundo() {
+    if (g_customSaveSpawns) {
+        gSaveManager.modifyActor(PROC_PLAYER, [](fopAc_ac_c* actor) {
+            SaveMngSpecial_SetActorPosAndYaw(actor, 1265.0f, 89.0f, -198433.0f, 22351);
+        });
+    }
+}
+
+KEEP_FUNC void SaveMngSpecial_DTCS_Hundo() {
+    if (g_customSaveSpawns) {
+        gSaveManager.modifyActor(PROC_PLAYER, [](fopAc_ac_c* actor) {
+            SaveMngSpecial_SetActorPosAndYaw(actor, 108.0f, 400.0f, 1115.0f, 19795);
+        });
+    }
+}
+
+KEEP_FUNC void SaveMngSpecial_LeafToFoF_Hundo() {
+    if (g_customSaveSpawns) {
+        gSaveManager.modifyActor(PROC_PLAYER, [](fopAc_ac_c* actor) {
+            SaveMngSpecial_SetActorPosAndYaw(actor, -192772.0f, 1209.0f, 318924.0f, 27727);
+        });
+    }
+}
+
+KEEP_FUNC void SaveMngSpecial_RollClipLeafGreatFairyFoF_Hundo() {
+    if (g_customSaveSpawns) {
+        gSaveManager.modifyActor(PROC_PLAYER, [](fopAc_ac_c* actor) {
+            SaveMngSpecial_SetActorPosAndYaw(actor, 6727.0f, 3500.0f, -1237.0f, 19799);
+        });
+    }
+}
+
+KEEP_FUNC void SaveMngSpecial_LeafToInvisPirateShip_Hundo() {
+    if (g_customSaveSpawns) {
+        gSaveManager.modifyActor(PROC_PLAYER, [](fopAc_ac_c* actor) {
+            SaveMngSpecial_SetActorPosAndYaw(actor, -195146.0f, 1650.0f, 313707.0f, 21672);
+        });
+    }
+}
+
+KEEP_FUNC void SaveMngSpecial_EnterTotg_Hundo() {
+    if (g_customSaveSpawns) {
+        gSaveManager.modifyActor(PROC_PLAYER, [](fopAc_ac_c* actor) {
+            SaveMngSpecial_SetActorPosAndYaw(actor, -204544.0f, 3.0f, 314709.0f, 13900);
+        });
+    }
+}
+
+KEEP_FUNC void SaveMngSpecial_FF2HelmCSSkip_Hundo() {
+    gSaveManager.modifyActor(PROC_PLAYER, [](fopAc_ac_c* actor) { SaveMngSpecial_ChestStorage(actor); });
+    if (g_customSaveSpawns) {
+        gSaveManager.modifyActor(PROC_PLAYER, [](fopAc_ac_c* actor) {
+            SaveMngSpecial_SetActorPosAndYaw(actor, -302780.0f, 1414.0f, -304219.0f, 0);
+        });
+    }
+}
+
+KEEP_FUNC void SaveMngSpecial_ETFloormastersRoom_Hundo() {
+    if (g_customSaveSpawns) {
+        gSaveManager.modifyActor(PROC_PLAYER, [](fopAc_ac_c* actor) {
+            SaveMngSpecial_SetActorPosAndYaw(actor, 1895.0f, -1750.0f, 1808.0f, 0);
+        });
+    }
+}
+
+KEEP_FUNC void SaveMngSpecial_BushStorageNeedleRock_Hundo() {
+    if (g_customSaveSpawns) {
+        gSaveManager.modifyActor(PROC_PLAYER, [](fopAc_ac_c* actor) {
+            SaveMngSpecial_SetActorPosAndYaw(actor, -279372.0f, 222.0f, 121682.0f, -18237);
+        });
+    }
+}
+
+KEEP_FUNC void SaveMngSpecial_ChestStorageFiveEyeReef_Hundo() {
+    if (g_customSaveSpawns) {
+        gSaveManager.modifyActor(PROC_PLAYER, [](fopAc_ac_c* actor) {
+            SaveMngSpecial_SetActorPosAndYaw(actor, -220067.0f, 1067.0f, 179998.0f, 16384);
+        });
+    }
+}
+
+KEEP_FUNC void SaveMngSpecial_TingleIslandStorage_Hundo() {
+    if (g_customSaveSpawns) {
+        gSaveManager.modifyActor(PROC_PLAYER, [](fopAc_ac_c* actor) {
+            SaveMngSpecial_SetActorPosAndYaw(actor, -99899.0f, 1707.0f, -79730.0f, -585);
+        });
+    }
+}
+
+KEEP_FUNC void SaveMngSpecial_WindTempleLockedRoom_Hundo() {
+    g_dComIfG_gameInfo.play.mNextStage.setRoomNo(2);
+    g_dComIfG_gameInfo.play.mNextStage.setPoint(2);
+    gSaveManager.modifyActor(PROC_PLAYER, [](fopAc_ac_c* actor) { SaveMngSpecial_ChestStorage(actor); });
+    if (g_customSaveSpawns) {
+        gSaveManager.modifyActor(PROC_PLAYER, [](fopAc_ac_c* actor) {
+            SaveMngSpecial_SetActorPosAndYaw(actor, 1465.0f, -4350.0f, 0, 16384);
+        });
+    }
+}
+
+KEEP_FUNC void SaveMngSpecial_6EyeSwim_Hundo() {
+    if (g_customSaveSpawns) {
+        gSaveManager.modifyActor(PROC_PLAYER, [](fopAc_ac_c* actor) {
+            SaveMngSpecial_SetActorPosAndYaw(actor, -89925.0f, 2100.0f, 104807.0f, 8192);
+        });
+    }
+}
+
+KEEP_FUNC void SaveMngSpecial_PawprintSwim_Hundo() {
+    if (g_customSaveSpawns) {
+        gSaveManager.modifyActor(PROC_PLAYER, [](fopAc_ac_c* actor) {
+            SaveMngSpecial_SetActorPosAndYaw(actor, -79981.0f, 1118.0f, 19935.0f, -3644);
+        });
+    }
+}
+
+KEEP_FUNC void SaveMngSpecial_Orca500_Hundo() {
+    if (g_customSaveSpawns) {
+        gSaveManager.modifyActor(PROC_PLAYER, [](fopAc_ac_c* actor) {
+            SaveMngSpecial_SetActorPosAndYaw(actor, -202642.0f, 425.0f, 317780.0f, 0);
+        });
+    }
+}
+
+KEEP_FUNC void SaveMngSpecial_HeadstoneSubSwim() {
+    if (g_customSaveSpawns) {
+        gSaveManager.modifyActor(PROC_PLAYER, [](fopAc_ac_c* actor) {
+            SaveMngSpecial_SetActorPosAndYaw(actor, -194063.0f, 400.0f, 318281.0f, 13430);
+        });
+    }
+}
+
+KEEP_FUNC void SaveMngSpecial_FourEyeStorageOnChest_Hundo() {
+    if (g_customSaveSpawns) {
+        gSaveManager.modifyActor(PROC_PLAYER, [](fopAc_ac_c* actor) {
+            SaveMngSpecial_SetActorPosAndYaw(actor, -282252.0f, 1266.0f, -222281.0f, -10923);
+        });
+    }
+}
+
+KEEP_FUNC void SaveMngSpecial_FHStorageOnChestCabanaSwim_Hundo() {
+    if (g_customSaveSpawns) {
+        gSaveManager.modifyActor(PROC_PLAYER, [](fopAc_ac_c* actor) {
+            SaveMngSpecial_SetActorPosAndYaw(actor, 219198.0f, 1370.0f, 208115.0f, -16384);
+        });
+    }
+}
+
+KEEP_FUNC void SaveMngSpecial_TwoEyeTo5Star_Hundo() {
+    if (g_customSaveSpawns) {
+        gSaveManager.modifyActor(PROC_PLAYER, [](fopAc_ac_c* actor) {
+            SaveMngSpecial_SetActorPosAndYaw(actor, 2000.0f, 917.0f, 281913.0f, -32768);
+        });
+    }
+}
+
+KEEP_FUNC void SaveMngSpecial_CliffPlateauToThornedFairy_Hundo() {
+    if (g_customSaveSpawns) {
+        gSaveManager.modifyActor(PROC_PLAYER, [](fopAc_ac_c* actor) {
+            SaveMngSpecial_SetActorPosAndYaw(actor, 278897.0f, 1000.0f, 179122.0f, -15299);
+        });
+    }
+}
+
+KEEP_FUNC void SaveMngSpecial_FF3Swim_Hundo() {
+    if (g_customSaveSpawns) {
+        gSaveManager.modifyActor(PROC_PLAYER, [](fopAc_ac_c* actor) {
+            SaveMngSpecial_SetActorPosAndYaw(actor, 18100.0f, 1057.0f, -17213.0f, 0);
+        });
+    }
 }

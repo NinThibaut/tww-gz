@@ -9,7 +9,8 @@ KEEP_FUNC PracticeMenu::PracticeMenu(Cursor& cursor)
                           {"all dungeons", ALL_DUNGEONS, "Load an all dungeons save", false},
                           {"pst", PST, "Load a pst save", false},
                           {"any\% (bombs first, no pg skip)", ANY_PERCENT, "Load an any\% save", false},
-                          {"pmg", PMG, "Load a pmg save", false}} {}
+                          {"pmg", PMG, "Load a pmg save", false},
+                          {"100\% (early drc)", HUNDO, "Load a hundo save", false}} {}
 
 PracticeMenu::~PracticeMenu() {}
 
@@ -38,6 +39,9 @@ void PracticeMenu::draw() {
             return;
         case PMG:
             g_menuMgr->push(MN_PMG_SAVED_INDEX);
+            return;
+        case HUNDO:
+            g_menuMgr->push(MN_HUNDO_SAVES_INDEX);
             return;
         }
     }

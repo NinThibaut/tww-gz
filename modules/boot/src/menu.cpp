@@ -17,8 +17,9 @@ const char* g_menuPaths[MN_COUNT] = {"main",           "cheats",
                                      "memory_editor",  "any_optimal_saves",
                                      "nomss_saves",    "ad_saves",
                                      "pst_saves",      "any_saves",
-                                     "pmg_saves",      "collision_view",
-                                     "actor_list",     "actor_spawn",
-                                     "equip_priority", "pos_settings"};
+                                     "pmg_saves",      "hundo_saves",
+                                     "collision_view", "actor_list",
+                                     "actor_spawn",    "equip_priority",
+                                     "pos_settings"};
 
 KEEP_FUNC Menu::Menu(Cursor& cursor) : cursor(cursor) {}

@@ -9,6 +9,7 @@ enum {
     PST,
     ANY_PERCENT,
     PMG,
+    HUNDO,
 
     PRACTICE_MENU_NUM,
 };
