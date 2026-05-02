@@ -153,7 +153,7 @@ KEEP_FUNC HundoSavesMenu::HundoSavesMenu(Cursor& cursor)
            "trade postman statue with goron at mother and child isles, end of the forest water 2 segment"},
           {"six eye reef", SIX_EYE_CHART_HUNDO, "clear 6 eye reef"},
           {"ff3 swim", FF3_SWIM_HUNDO, "superswim to forsaken fortress 3 from six eye reef"},
-          {"puppet ganon skip", PUPPET_GANON_HUNDO, "skip, or fight puppet ganon"},
+          {"puppet ganon skip", PUPPET_GANON_HUNDO, "skip or fight puppet ganon"},
           {"ganondorf", GANONDORF_HUNDO, "ganondorf boss fight"}} {}
 
 HundoSavesMenu::~HundoSavesMenu() {}
