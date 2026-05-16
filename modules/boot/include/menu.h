@@ -57,6 +57,7 @@ enum MenuIndex {
     MN_PST_SAVES_INDEX,
     MN_ANY_SAVES_INDEX,
     MN_PMG_SAVED_INDEX,
+    MN_HUNDO_SAVES_INDEX,
 
     // Scene menu's sub menus
     MN_COLLISION_VIEW_INDEX,
