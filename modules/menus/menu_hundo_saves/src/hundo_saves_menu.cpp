@@ -176,6 +176,7 @@ void HundoSavesMenu::draw() {
         special(LEAF_TO_SHIP_HUNDO, SaveMngSpecial_LeafToInvisPirateShip_Hundo),
         special(FW_SKS_HUNDO, SaveMngSpecial_GiveChestStorage),
         special(OUTSET_TO_STI_HUNDO, SaveMngSpecial_EnterTotg_Hundo),
+        special(CRESCENT_SUB_HUNDO, SaveMngSpecial_CrescentMoonSub_Hundo),
         special(HELMAROC_CS_SKIP_HUNDO, SaveMngSpecial_FF2HelmCSSkip_Hundo),
         special(ET_SONG_STONE_SKIP_HUNDO, SaveMngSpecial_GiveChestStorage),
         special(ET_FLOORMASTERS_HUNDO, SaveMngSpecial_ETFloormastersRoom_Hundo),
@@ -184,6 +185,7 @@ void HundoSavesMenu::draw() {
         special(FIVE_EYE_TO_ETI_SWIM_HUNDO, SaveMngSpecial_ChestStorageFiveEyeReef_Hundo),
         special(WIND_TEMPLE_LOCKED_ROOM_HUNDO, SaveMngSpecial_WindTempleLockedRoom_Hundo),
         special(STONEWATCHER_TO_6EYE_SWIM_HUNDO, SaveMngSpecial_6EyeSwim_Hundo),
+        special(SIX_EYE_SUBMARINE_HUNDO, SaveMngSpecial_6EyeSub_Hundo),
         special(WIND_TEMPLE_LOCKED_ROOM_HUNDO, SaveMngSpecial_GiveChestStorage),
         special(TINGLE_TO_STONEWATCHER_SWIM_HUNDO, SaveMngSpecial_TingleIslandStorage_Hundo),
         special(CYCLOPS_TO_PAWPRINT_SWIM_HUNDO, SaveMngSpecial_PawprintSwim_Hundo),
@@ -193,6 +195,7 @@ void HundoSavesMenu::draw() {
         special(CABANA_SWIM_HUNDO, SaveMngSpecial_FHStorageOnChestCabanaSwim_Hundo),
         special(GALE_SWIM_3_HUNDO, SaveMngSpecial_TingleIslandStorage_Hundo),
         special(FIVE_STAR_SWIM_HUNDO, SaveMngSpecial_TwoEyeTo5Star_Hundo),
+        special(FIVE_STAR_RAFT_CHEST_HUNDO, SaveMngSpecial_5StarChestStorage_Hundo),
         special(THORNED_FAIRY_SWIM_HUNDO, SaveMngSpecial_CliffPlateauToThornedFairy_Hundo),
         special(FF3_SWIM_HUNDO, SaveMngSpecial_FF3Swim_Hundo),
     };

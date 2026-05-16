@@ -619,6 +619,13 @@ KEEP_FUNC void SaveMngSpecial_EnterTotg_Hundo() {
     }
 }
 
+KEEP_FUNC void SaveMngSpecial_CrescentMoonSub_Hundo() {
+    gSaveManager.modifySave([]() { 
+        dComIfGp_setIkadaShipBeforeRoomId(5); 
+        dComIfGp_setIkadaShipId(0);
+    });
+}
+
 KEEP_FUNC void SaveMngSpecial_FF2HelmCSSkip_Hundo() {
     gSaveManager.modifyActor(PROC_PLAYER, [](fopAc_ac_c* actor) { SaveMngSpecial_ChestStorage(actor); });
     if (g_customSaveSpawns) {
@@ -679,6 +686,13 @@ KEEP_FUNC void SaveMngSpecial_6EyeSwim_Hundo() {
     }
 }
 
+KEEP_FUNC void SaveMngSpecial_6EyeSub_Hundo() {
+    gSaveManager.modifySave([]() { 
+        dComIfGp_setIkadaShipBeforeRoomId(25); 
+        dComIfGp_setIkadaShipId(0);
+    });
+}
+
 KEEP_FUNC void SaveMngSpecial_PawprintSwim_Hundo() {
     if (g_customSaveSpawns) {
         gSaveManager.modifyActor(PROC_PLAYER, [](fopAc_ac_c* actor) {
@@ -725,6 +739,16 @@ KEEP_FUNC void SaveMngSpecial_TwoEyeTo5Star_Hundo() {
             SaveMngSpecial_SetActorPosAndYaw(actor, 2000.0f, 917.0f, 281913.0f, -32768);
         });
     }
+}
+
+KEEP_FUNC void SaveMngSpecial_5StarChestStorage_Hundo() {
+    g_dComIfG_gameInfo.play.mNextStage.setName((char*)"Abship");
+    g_dComIfG_gameInfo.play.mNextStage.setRoomNo(0);
+    g_dComIfG_gameInfo.play.mNextStage.setPoint(0);
+    gSaveManager.modifySave([]() { 
+        dComIfGp_setIkadaShipBeforeRoomId(49); 
+        dComIfGp_setIkadaShipId(0);
+    });
 }
 
 KEEP_FUNC void SaveMngSpecial_CliffPlateauToThornedFairy_Hundo() {
