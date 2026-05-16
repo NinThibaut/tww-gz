@@ -30,7 +30,7 @@ void exit() {
 void onCreate() {
     g_menuMgr->setPersistentData(new ActorListData());
     if (!g_menuMgr->getPermanentData<Cursor>()) {
-        g_menuMgr->setPermanentData(new Cursor);
+        g_menuMgr->setPermanentData(new (-32) Cursor);
     }
 }
 

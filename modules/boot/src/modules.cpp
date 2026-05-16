@@ -1,5 +1,6 @@
 #include "modules.h"
 #include "libtww/include/defines.h"
+#include "libtww/include/f_op/f_op_scene_req.h"
 
 #include "commands.h"
 #include "global_data.h"
@@ -24,6 +25,9 @@ KEEP_FUNC void GZ_handleModules() {
 }
 
 KEEP_FUNC bool inputViewer_active() {
+    if (l_fopScnRq_IsUsingOfOverlap) {
+        return false;
+    }
     return g_tools[INPUT_VIEWER_INDEX].active;
 }
 
@@ -32,13 +36,23 @@ KEEP_FUNC bool actorView_active() {
 }
 
 KEEP_FUNC bool moveLink_active() {
+    if (l_fopScnRq_IsUsingOfOverlap) {
+        return false;
+    }
     return g_tools[MOVE_LINK_INDEX].active;
 }
 
 KEEP_FUNC bool rollClipTool_active() {
+    if (l_fopScnRq_IsUsingOfOverlap) {
+        return false;
+    }
     return g_tools[ROLL_CLIP_INDEX].active;
 }
 
 KEEP_FUNC bool pauseBufferInputTool_active() {
+    if (l_fopScnRq_IsUsingOfOverlap) {
+        return false;
+    }
+
     return g_tools[PAUSE_BUFFER_INPUT_INDEX].active;
 }
