@@ -18,4 +18,5 @@ KEEP_VAR Tool g_tools[TOOLS_COUNT] = {{DEBUG_INDEX, false},
                                       {VOID_INDEX, false},
                                       {ROLL_CLIP_INDEX, false},
                                       {PAUSE_BUFFER_INPUT_INDEX, false},
-                                      {MOVE_LINK_INDEX, false}};
+                                      {MOVE_LINK_INDEX, false},
+                                      {TURBO_INPUTS_INDEX, false}};
