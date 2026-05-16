@@ -60,7 +60,6 @@ inline void SaveMngSpecial_DoorCancel(fopAc_ac_c* actor) {
     *collision_ptr |= 0x4004;
 }
 
-
 void SaveMngSpecial_SetLayer0();
 void SaveMngSpecial_SetLayer1();
 void SaveMngSpecial_SetLayer2();

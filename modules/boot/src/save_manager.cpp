@@ -121,7 +121,7 @@ KEEP_FUNC void SaveManager::prepareStage() {
 KEEP_FUNC void SaveManager::loadData() {
     if (s_injectSave) {
         SaveManager::injectSave(MEMFILE_BUF);
-        
+
         if (gSaveManager.mPracticeFileOpts.inject_options_after_load != nullptr) {
             gSaveManager.mPracticeFileOpts.inject_options_after_load();
         }

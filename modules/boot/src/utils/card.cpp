@@ -320,7 +320,9 @@ KEEP_FUNC void GZ_storeMemfile(Storage& storage) {
     posData.link = dComIfGp_getPlayer(0)->current.pos;
     posData.cam = dComIfg_getCamPosAndTarget();
     posData.angle = dComIfGp_getPlayer(0)->shape_angle.y;
-    OSReport("GZ_storeMemfile: stage: {%s, %d, %d}\n", dComIfGp_getStartStage()->mName, dStage_roomControl_c__mStayNo, GZ_validSpawnPoint(dComIfGp_getStartStage()->mName, dStage_roomControl_c__mStayNo, dComIfGp_getStartStage()->mPoint));
+    OSReport("GZ_storeMemfile: stage: {%s, %d, %d}\n", dComIfGp_getStartStage()->mName, dStage_roomControl_c__mStayNo,
+             GZ_validSpawnPoint(dComIfGp_getStartStage()->mName, dStage_roomControl_c__mStayNo,
+                                dComIfGp_getStartStage()->mPoint));
     OSReport("GZ_storeMemfile: position: {%f, %f, %f}\n", posData.link.x, posData.link.y, posData.link.z);
     OSReport("GZ_storeMemfile: angle: %d\n", posData.angle);
     OSReport("GZ_storeMemfile: cam target: {%f, %f, %f}\n", posData.cam.target.x, posData.cam.target.y,
@@ -339,7 +341,8 @@ KEEP_FUNC void GZ_storeMemfile(Storage& storage) {
             dComIfGs_putSave(g_dComIfG_gameInfo.info.mDan.mStageNo);
 
             strcpy(g_dComIfG_gameInfo.info.getPlayer().mReturnPlace.mName, dComIfGp_getStartStage()->mName);
-            g_dComIfG_gameInfo.info.getPlayer().mReturnPlace.mPoint = GZ_validSpawnPoint(dComIfGp_getStartStage()->mName, dStage_roomControl_c__mStayNo, dComIfGp_getStartStage()->mPoint);
+            g_dComIfG_gameInfo.info.getPlayer().mReturnPlace.mPoint = GZ_validSpawnPoint(
+                dComIfGp_getStartStage()->mName, dStage_roomControl_c__mStayNo, dComIfGp_getStartStage()->mPoint);
             g_dComIfG_gameInfo.info.getPlayer().mReturnPlace.mRoomNo = dStage_roomControl_c__mStayNo;
 
             uint8_t* data = new (-32) uint8_t[sizeof(dSv_save_c) + 1 + sizeof(PositionData)];

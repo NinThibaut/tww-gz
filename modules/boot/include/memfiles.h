@@ -14,7 +14,7 @@ extern PositionData memfile_posdata;
 
 void GZ_setLinkPosition();
 
-/* 
+/*
 Some rooms may crash or not load the currect room if the spawn point is not in the current room.
 Mostly happens in DRC, ET and WT.
 Return a correct spawn point based on my testing */

@@ -9,7 +9,6 @@
 #include "commands.h"
 #include "settings.h"
 
-
 // =================== GENERIC FUNCTIONS ===================
 
 KEEP_FUNC void SaveMngSpecial_SetLayer0() {

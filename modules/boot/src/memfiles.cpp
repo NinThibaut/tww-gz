@@ -11,13 +11,15 @@ KEEP_VAR PositionData memfile_posdata;
 
 KEEP_FUNC void GZ_setLinkPosition() {
     gSaveManager.modifyActor(PROC_PLAYER, [](fopAc_ac_c* actor) {
-        SaveMngSpecial_SetActorPosAndYaw(actor, memfile_posdata.link.x, memfile_posdata.link.y, memfile_posdata.link.z, memfile_posdata.angle);
+        SaveMngSpecial_SetActorPosAndYaw(actor, memfile_posdata.link.x, memfile_posdata.link.y, memfile_posdata.link.z,
+                                         memfile_posdata.angle);
         dComIfg_setCamPosAndTarget(memfile_posdata.cam);
     });
 }
 
-KEEP_FUNC bool  GZ_checkWorkingMemfile(char* stage) {
-    return strcmp(stage, "TF_01") != 0 && strcmp(stage, "TF_02") != 0 && strcmp(stage, "Obshop") != 0 && strcmp(stage, "Abship") != 0;
+KEEP_FUNC bool GZ_checkWorkingMemfile(char* stage) {
+    return strcmp(stage, "TF_01") != 0 && strcmp(stage, "TF_02") != 0 && strcmp(stage, "Obshop") != 0 &&
+           strcmp(stage, "Abship") != 0;
 }
 
 KEEP_FUNC int GZ_validSpawnPoint(char* stage, int room, int point) {
@@ -89,4 +91,4 @@ KEEP_FUNC int GZ_validSpawnPoint(char* stage, int room, int point) {
         return 0;
     }
     return point;
-}                                                                                                                                                                                                                               
+}
