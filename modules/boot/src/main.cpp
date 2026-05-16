@@ -29,7 +29,6 @@
 _FIFOQueue Queue;
 bool l_loadCard = true;
 Texture l_gzIconTex;
-bool last_frame_was_loading = false;
 
 #define Q(x) #x
 #define QUOTE(x) Q(x)
@@ -113,7 +112,6 @@ KEEP_FUNC void GZ_handleMenu() {
     if (l_fopScnRq_IsUsingOfOverlap) {
         g_menuMgr->hide();
         g_moveLinkEnabled = false;
-        last_frame_was_loading = true;
     }
 
     g_menuMgr->handleCommands();

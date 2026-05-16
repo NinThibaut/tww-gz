@@ -5,12 +5,11 @@
 #include "utils/hook.h"
 
 KEEP_FUNC MemoryMenu::MemoryMenu(Cursor& cursor)
-    : Menu(cursor), lines{
-                        {"watches", WATCHES_INDEX, "Manage memory watches", false},
-                        {"memory editor", MEM_EDITOR_INDEX, "View/edit memory", false},
-                        {"flag logger", FLAG_LOGGER_INDEX, "Toggle outputting triggered events/switches to screen",
-                         true, &g_flagLogEnabled},
-                    } {}
+    : Menu(cursor), lines{{"watches", WATCHES_INDEX, "Manage memory watches", false},
+                          {"memory editor", MEM_EDITOR_INDEX, "View/edit memory", false},
+                          {"flag logger", FLAG_LOGGER_INDEX, "Toggle outputting triggered events/switches to screen",
+                           true, &g_flagLogEnabled},
+                          {"memfiles", MEMFILES_INDEX, "Save/Load memory files", false}} {}
 
 MemoryMenu::~MemoryMenu() {}
 
@@ -33,6 +32,9 @@ void MemoryMenu::draw() {
         case FLAG_LOGGER_INDEX:
             g_flagLogEnabled = !g_flagLogEnabled;
             break;
+        case MEMFILES_INDEX:
+            g_menuMgr->push(MN_MEMFILES_MENU_INDEX);
+            return;
         }
     }
 

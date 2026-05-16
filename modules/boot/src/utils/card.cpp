@@ -6,6 +6,8 @@
 #include "libtww/include/SSystem/SComponent/c_counter.h"
 #include "libtww/include/m_Do/m_Do_printf.h"
 #include "fifo_queue.h"
+#include "memfiles.h"
+#include "save_manager.h"
 #include "rels/include/defines.h"
 #include "rels/include/cxx.h"
 #include "menus/utils/menu_mgr.h"
@@ -246,5 +248,126 @@ KEEP_FUNC void GZ_loadGZSave(bool& card_load) {
         }
 
         card_load = false;
+    }
+}
+
+KEEP_FUNC bool GZ_memfileExists(Storage& storage) {
+    storage.result = CARDProbeEx(0, NULL, &storage.sector_size);
+    if (storage.result != Ready) {
+        return false;
+    }
+    storage.result = StorageOpen(0, storage.file_name_buffer, &storage.info, OPEN_MODE_READ);
+    if (storage.result == Ready) {
+        storage.result = StorageClose(&storage.info);
+        return true;
+    }
+    return false;
+}
+
+KEEP_FUNC void GZ_loadMemfile(Storage& storage) {
+    storage.result = StorageOpen(0, storage.file_name_buffer, &storage.info, OPEN_MODE_RW);
+    if (storage.result == Ready) {
+        PositionData posData;
+        OSReport("GZ_loadMemfile: reading position data at 0x%x\n", sizeof(dSv_info_c) + 1);
+        storage.result = GZ_readMemfile(&storage, posData, storage.sector_size);
+        OSReport("GZ_loadMemfile: result: %d\n", storage.result);
+        OSReport("GZ_loadMemfile: position: {%f, %f, %f}\n", posData.link.x, posData.link.y, posData.link.z);
+        OSReport("GZ_loadMemfile: angle: %f\n", posData.angle);
+        OSReport("GZ_loadMemfile: cam target: {%f, %f, %f}\n", posData.cam.target.x, posData.cam.target.y,
+                 posData.cam.target.z);
+        OSReport("GZ_loadMemfile: cam pos: {%f, %f, %f}\n", posData.cam.pos.x, posData.cam.pos.y, posData.cam.pos.z);
+
+        if (storage.result == Ready) {
+            FIFOQueue::push("loaded memfile!", Queue);
+            gSaveManager.mPracticeFileOpts.inject_options_during_load = GZ_setLinkPosition;
+            SaveManager::prepareStage();
+            GZ_loadPositionData(posData);
+            g_menuMgr->hide();
+        } else {
+            char buff[32];
+            snprintf(buff, sizeof(buff), "failed to load: %d", storage.result);
+            FIFOQueue::push(buff, Queue);
+        }
+        storage.result = StorageClose(&storage.info);
+        SaveManager::s_injectMemfile = true;
+    }
+}
+
+KEEP_FUNC int32_t GZ_readMemfile(Storage* storage, PositionData& posData, int32_t sector_size) {
+    int32_t result = Ready;
+#define assert_result(stmt)                                                                                            \
+    if ((result = (stmt)) != Ready) {                                                                                  \
+        return result;                                                                                                 \
+    }
+
+    assert_result(GZ_storageRead(storage, MEMFILE_BUF, sizeof(dSv_save_c), 0, sector_size));
+
+    assert_result(GZ_storageRead(storage, &posData, sizeof(posData), sizeof(dSv_save_c) + 1, sector_size));
+
+#undef assert_result
+    return result;
+}
+
+void GZ_loadPositionData(PositionData& pos_data) {
+    memfile_posdata.link = pos_data.link;
+    memfile_posdata.cam.target = pos_data.cam.target;
+    memfile_posdata.cam.pos = pos_data.cam.pos;
+    memfile_posdata.angle = pos_data.angle;
+}
+
+KEEP_FUNC void GZ_storeMemfile(Storage& storage) {
+    PositionData posData;
+    posData.link = dComIfGp_getPlayer(0)->current.pos;
+    posData.cam = dComIfg_getCamPosAndTarget();
+    posData.angle = dComIfGp_getPlayer(0)->shape_angle.y;
+    OSReport("GZ_storeMemfile: stage: {%s, %d, %d}\n", dComIfGp_getStartStage()->mName, dStage_roomControl_c__mStayNo, GZ_validSpawnPoint(dComIfGp_getStartStage()->mName, dStage_roomControl_c__mStayNo, dComIfGp_getStartStage()->mPoint));
+    OSReport("GZ_storeMemfile: position: {%f, %f, %f}\n", posData.link.x, posData.link.y, posData.link.z);
+    OSReport("GZ_storeMemfile: angle: %d\n", posData.angle);
+    OSReport("GZ_storeMemfile: cam target: {%f, %f, %f}\n", posData.cam.target.x, posData.cam.target.y,
+             posData.cam.target.z);
+    OSReport("GZ_storeMemfile: cam pos: {%f, %f, %f}\n", posData.cam.pos.x, posData.cam.pos.y, posData.cam.pos.z);
+    uint32_t file_size =
+        (uint32_t)(ceil((double)(sizeof(dSv_save_c) + 1 + sizeof(PositionData)) / (double)storage.sector_size) *
+                   storage.sector_size);
+
+    storage.result = StorageDelete(0, storage.file_name_buffer);
+    storage.result = StorageCreate(0, storage.file_name_buffer, file_size, &storage.info);
+
+    if (storage.result == Ready || storage.result == Exist) {
+        storage.result = StorageOpen(0, storage.file_name_buffer, &storage.info, OPEN_MODE_RW);
+        if (storage.result == Ready) {
+            dComIfGs_putSave(g_dComIfG_gameInfo.info.mDan.mStageNo);
+
+            strcpy(g_dComIfG_gameInfo.info.getPlayer().mReturnPlace.mName, dComIfGp_getStartStage()->mName);
+            g_dComIfG_gameInfo.info.getPlayer().mReturnPlace.mPoint = GZ_validSpawnPoint(dComIfGp_getStartStage()->mName, dStage_roomControl_c__mStayNo, dComIfGp_getStartStage()->mPoint);
+            g_dComIfG_gameInfo.info.getPlayer().mReturnPlace.mRoomNo = dStage_roomControl_c__mStayNo;
+
+            uint8_t* data = new (-32) uint8_t[sizeof(dSv_save_c) + 1 + sizeof(PositionData)];
+            memcpy(data, &g_dComIfG_gameInfo.info.mSavedata, sizeof(dSv_save_c));
+            memcpy(&data[sizeof(dSv_save_c) + 1], &posData, sizeof(PositionData));
+            storage.result =
+                GZ_storageWrite(&storage, data, sizeof(dSv_save_c) + 1 + sizeof(PositionData), 0, storage.sector_size);
+            OSReport("GZ_storeMemfile: data write result: %d\n", storage.result);
+            delete[] data;
+            if (storage.result == Ready) {
+                FIFOQueue::push("saved memfile!", Queue);
+            } else {
+                char buff[32];
+                snprintf(buff, sizeof(buff), "failed to save: %d", storage.result);
+                FIFOQueue::push(buff, Queue);
+            }
+            storage.result = StorageClose(&storage.info);
+        }
+    }
+}
+
+KEEP_FUNC void GZ_deleteMemfile(Storage& storage) {
+    storage.result = StorageDelete(0, storage.file_name_buffer);
+    if (storage.result == Ready) {
+        FIFOQueue::push("deleted memfile!", Queue);
+    } else {
+        char buff[32];
+        snprintf(buff, sizeof(buff), "failed to delete: %d", storage.result);
+        FIFOQueue::push(buff, Queue);
     }
 }

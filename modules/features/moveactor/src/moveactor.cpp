@@ -26,7 +26,6 @@
 #define WHITE_RGBA 0xFFFFFFFF
 #define LINE_X_OFFSET 20.0f
 
-
 namespace MoveActor {
 
 double pitch = 0.0;
@@ -162,7 +161,7 @@ KEEP_FUNC void execute() {
             u16* collision_ptr = dComIfGs_getCollision();
             if (hadDoorCancel) {
                 *collision_ptr |= 0x4004;
-            } 
+            }
             if (hadChestStorage) {
                 *collision_ptr |= 0x4;
             }

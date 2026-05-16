@@ -49,6 +49,7 @@ enum MenuIndex {
     // Memory menu's sub menus
     MN_WATCHES_INDEX,
     MN_MEMORY_EDITOR_INDEX,
+    MN_MEMFILES_MENU_INDEX,
 
     // Practice menu's sub menus
     MN_ANY_OPTIMAL_SAVES_INDEX,

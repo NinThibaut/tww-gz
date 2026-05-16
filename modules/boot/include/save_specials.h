@@ -1,4 +1,65 @@
 #pragma once
+#include "libtww/include/d/com/d_com_inf_game.h"
+#include "libtww/include/d/a/d_a_player_main.h"
+#include "libtww/include/d/d_procname.h"
+
+// =================== UTILITIES ===================
+
+inline void SaveMngSpecial_SetActorPos(fopAc_ac_c* actor, f32 x, f32 y, f32 z) {
+    actor->current.pos.set(x, y, z);
+
+    if (actor->mBase.mProcName == PROC_PLAYER) {
+        l_debug_keep_pos.x = x;
+        l_debug_keep_pos.y = y;
+        l_debug_keep_pos.z = z;
+    }
+}
+
+inline void SaveMngSpecial_SetActorYaw(fopAc_ac_c* actor, s16 yRot) {
+    actor->current.angle.y = actor->shape_angle.y = yRot;
+
+    if (actor->mBase.mProcName == PROC_PLAYER) {
+        l_debug_current_angle.y = l_debug_shape_angle.y = yRot;
+    }
+}
+
+inline void SaveMngSpecial_SetActorRot(fopAc_ac_c* actor, s16 xRot, s16 yRot, s16 zRot) {
+    actor->current.angle.set(xRot, yRot, zRot);
+    actor->shape_angle.set(xRot, yRot, zRot);
+
+    if (actor->mBase.mProcName == PROC_PLAYER) {
+        l_debug_current_angle.set(xRot, yRot, zRot);
+        l_debug_shape_angle.set(xRot, yRot, zRot);
+    }
+}
+
+inline void SaveMngSpecial_SetActorPosAndYaw(fopAc_ac_c* actor, f32 x, f32 y, f32 z, s16 yRot) {
+    SaveMngSpecial_SetActorPos(actor, x, y, z);
+    SaveMngSpecial_SetActorYaw(actor, yRot);
+}
+
+inline void SaveMngSpecial_SetHealth(u16 health) {
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setLife(health);
+}
+
+inline void SaveMngSpecial_SetMagic(u8 magic) {
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setMagic(magic);
+}
+
+inline void SaveMngSpecial_SetBombCount(u8 bombs) {
+    g_dComIfG_gameInfo.info.getPlayer().getItemRecord().setBombNum(bombs);
+}
+
+inline void SaveMngSpecial_ChestStorage(fopAc_ac_c* actor) {
+    u16* collision_ptr = dComIfGs_getCollision();
+    *collision_ptr = (*collision_ptr & (0xFFFF ^ 0x4000)) | 0x4;
+}
+
+inline void SaveMngSpecial_DoorCancel(fopAc_ac_c* actor) {
+    u16* collision_ptr = dComIfGs_getCollision();
+    *collision_ptr |= 0x4004;
+}
+
 
 void SaveMngSpecial_SetLayer0();
 void SaveMngSpecial_SetLayer1();
