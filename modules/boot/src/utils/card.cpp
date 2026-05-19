@@ -5,6 +5,8 @@
 #include "libtww/include/SSystem/SComponent/c_malloc.h"
 #include "libtww/include/SSystem/SComponent/c_counter.h"
 #include "libtww/include/m_Do/m_Do_printf.h"
+#include "libtww/include/d/com/d_com_inf_game.h"
+#include "libtww/include/d/a/d_a_player_main.h"
 #include "fifo_queue.h"
 #include "memfiles.h"
 #include "save_manager.h"
@@ -280,8 +282,8 @@ KEEP_FUNC void GZ_loadMemfile(Storage& storage) {
         if (storage.result == Ready) {
             FIFOQueue::push("loaded memfile!", Queue);
             gSaveManager.mPracticeFileOpts.inject_options_during_load = GZ_setLinkPosition;
-            SaveManager::prepareStage();
             GZ_loadPositionData(posData);
+            SaveManager::prepareStage();
             g_menuMgr->hide();
         } else {
             char buff[32];
@@ -313,13 +315,24 @@ void GZ_loadPositionData(PositionData& pos_data) {
     memfile_posdata.cam.target = pos_data.cam.target;
     memfile_posdata.cam.pos = pos_data.cam.pos;
     memfile_posdata.angle = pos_data.angle;
+    memfile_posdata.korl = pos_data.korl;
 }
 
 KEEP_FUNC void GZ_storeMemfile(Storage& storage) {
     PositionData posData;
-    posData.link = dComIfGp_getPlayer(0)->current.pos;
+    int link_animation = ((daPy_lk_c*)dComIfGp_getPlayer(0))->mCurProcID;
+    if (link_animation == daPy_lk_c::PROC_SHIP_PADDLE_e || link_animation == daPy_lk_c::PROC_SHIP_STEER_e ||
+        link_animation == daPy_lk_c::PROC_SHIP_CRANE_e || link_animation == daPy_lk_c::PROC_SHIP_CANNON_e) {
+        fopAc_ac_c* shipActor = (fopAc_ac_c*)dComIfGp_getShipActor();
+        posData.link = shipActor->current.pos;
+        posData.angle = shipActor->shape_angle.y;
+        posData.korl = true;
+    } else {
+        posData.link = dComIfGp_getPlayer(0)->current.pos;
+        posData.angle = dComIfGp_getPlayer(0)->shape_angle.y;
+        posData.korl = false;
+    }
     posData.cam = dComIfg_getCamPosAndTarget();
-    posData.angle = dComIfGp_getPlayer(0)->shape_angle.y;
     OSReport("GZ_storeMemfile: stage: {%s, %d, %d}\n", dComIfGp_getStartStage()->mName, dStage_roomControl_c__mStayNo,
              GZ_validSpawnPoint(dComIfGp_getStartStage()->mName, dStage_roomControl_c__mStayNo,
                                 dComIfGp_getStartStage()->mPoint));

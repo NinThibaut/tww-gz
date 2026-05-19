@@ -10,7 +10,12 @@
 KEEP_VAR PositionData memfile_posdata;
 
 KEEP_FUNC void GZ_setLinkPosition() {
-    gSaveManager.modifyActor(PROC_PLAYER, [](fopAc_ac_c* actor) {
+    if (memfile_posdata.korl) {
+        OSReport("Korl\n");
+    } else {
+        OSReport("Link\n");
+    }
+    gSaveManager.modifyActor(memfile_posdata.korl ? PROC_SHIP : PROC_PLAYER, [](fopAc_ac_c* actor) {
         SaveMngSpecial_SetActorPosAndYaw(actor, memfile_posdata.link.x, memfile_posdata.link.y, memfile_posdata.link.z,
                                          memfile_posdata.angle);
         dComIfg_setCamPosAndTarget(memfile_posdata.cam);
@@ -85,6 +90,11 @@ KEEP_FUNC int GZ_validSpawnPoint(char* stage, int room, int point) {
             return 5;
         }
     } else if (strcmp(stage, "sea") == 0) {
+        int link_animation = ((daPy_lk_c*)dComIfGp_getPlayer(0))->mCurProcID;
+        if (link_animation == daPy_lk_c::PROC_SHIP_PADDLE_e || link_animation == daPy_lk_c::PROC_SHIP_STEER_e ||
+            link_animation == daPy_lk_c::PROC_SHIP_CRANE_e || link_animation == daPy_lk_c::PROC_SHIP_CANNON_e) {
+            return 102;
+        }
         return 0;
     }
     if (point == -1) {
