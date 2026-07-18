@@ -316,10 +316,12 @@ void GZ_loadPositionData(PositionData& pos_data) {
     memfile_posdata.cam.pos = pos_data.cam.pos;
     memfile_posdata.angle = pos_data.angle;
     memfile_posdata.korl = pos_data.korl;
+    memfile_posdata.collision = pos_data.collision;
 }
 
 KEEP_FUNC void GZ_storeMemfile(Storage& storage) {
     PositionData posData;
+    u16* collision_ptr;
     int link_animation = ((daPy_lk_c*)dComIfGp_getPlayer(0))->mCurProcID;
     if (link_animation == daPy_lk_c::PROC_SHIP_PADDLE_e || link_animation == daPy_lk_c::PROC_SHIP_STEER_e ||
         link_animation == daPy_lk_c::PROC_SHIP_CRANE_e || link_animation == daPy_lk_c::PROC_SHIP_CANNON_e) {
@@ -332,6 +334,16 @@ KEEP_FUNC void GZ_storeMemfile(Storage& storage) {
         posData.angle = dComIfGp_getPlayer(0)->shape_angle.y;
         posData.korl = false;
     }
+
+    collision_ptr = dComIfGs_getCollision();
+    if ((*collision_ptr & 0x4004) == 0x4004) {
+        posData.collision = DOORCANCEL;
+    } else if ((*collision_ptr & 0x4004) == 0x4) {
+        posData.collision = CHESTSTORAGE;
+    } else {
+        posData.collision = NORMAL;
+    }
+    
     posData.cam = dComIfg_getCamPosAndTarget();
     OSReport("GZ_storeMemfile: stage: {%s, %d, %d}\n", dComIfGp_getStartStage()->mName, dStage_roomControl_c__mStayNo,
              GZ_validSpawnPoint(dComIfGp_getStartStage()->mName, dStage_roomControl_c__mStayNo,

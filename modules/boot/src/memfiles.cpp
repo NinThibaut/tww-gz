@@ -10,15 +10,19 @@
 KEEP_VAR PositionData memfile_posdata;
 
 KEEP_FUNC void GZ_setLinkPosition() {
-    if (memfile_posdata.korl) {
-        OSReport("Korl\n");
-    } else {
-        OSReport("Link\n");
-    }
     gSaveManager.modifyActor(memfile_posdata.korl ? PROC_SHIP : PROC_PLAYER, [](fopAc_ac_c* actor) {
         SaveMngSpecial_SetActorPosAndYaw(actor, memfile_posdata.link.x, memfile_posdata.link.y, memfile_posdata.link.z,
                                          memfile_posdata.angle);
         dComIfg_setCamPosAndTarget(memfile_posdata.cam);
+    });
+    gSaveManager.modifyActor(PROC_PLAYER, [](fopAc_ac_c* actor) {
+        u16* collision_ptr = dComIfGs_getCollision();
+        if (memfile_posdata.collision == DOORCANCEL) {
+            *collision_ptr |= 0x4004;
+        }
+        else if (memfile_posdata.collision == CHESTSTORAGE) {
+            *collision_ptr |= 0x4;
+        }
     });
 }
 

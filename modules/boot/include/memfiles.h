@@ -4,11 +4,18 @@
 #include "libtww/include/dolphin/mtx/vec.h"
 #include "libtww/include/SSystem/SComponent/c_xyz.h"
 
+enum Collision {
+    NORMAL,
+    CHESTSTORAGE,
+    DOORCANCEL
+};
+
 struct PositionData {
     cXyz link;
     CameraMatrix cam;
     s16 angle;
     bool korl;
+    Collision collision;
 };
 
 extern PositionData memfile_posdata;
