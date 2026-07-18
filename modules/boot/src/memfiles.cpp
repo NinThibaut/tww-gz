@@ -19,8 +19,7 @@ KEEP_FUNC void GZ_setLinkPosition() {
         u16* collision_ptr = dComIfGs_getCollision();
         if (memfile_posdata.collision == DOORCANCEL) {
             *collision_ptr |= 0x4004;
-        }
-        else if (memfile_posdata.collision == CHESTSTORAGE) {
+        } else if (memfile_posdata.collision == CHESTSTORAGE) {
             *collision_ptr |= 0x4;
         }
     });

@@ -9,12 +9,18 @@ enum MemfilesIndex {
     MEMFILE_INDEX_COUNT,
 };
 
+struct PermanantData {
+    Cursor cursor;
+    u8 memfileIndex = 1;
+};
+
 class MemfilesMenu : public Menu {
 public:
-    MemfilesMenu(Cursor&);
+    MemfilesMenu(PermanantData&);
     virtual ~MemfilesMenu();
     virtual void draw();
 
 private:
     Line lines[MEMFILE_INDEX_COUNT];
+    u8* l_fileNo;
 };

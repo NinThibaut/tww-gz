@@ -343,7 +343,7 @@ KEEP_FUNC void GZ_storeMemfile(Storage& storage) {
     } else {
         posData.collision = NORMAL;
     }
-    
+
     posData.cam = dComIfg_getCamPosAndTarget();
     OSReport("GZ_storeMemfile: stage: {%s, %d, %d}\n", dComIfGp_getStartStage()->mName, dStage_roomControl_c__mStayNo,
              GZ_validSpawnPoint(dComIfGp_getStartStage()->mName, dStage_roomControl_c__mStayNo,

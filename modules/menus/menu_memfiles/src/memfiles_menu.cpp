@@ -7,13 +7,12 @@
 
 #define MAX_SAVE_SLOTS 20
 
-u8 l_fileNo = 1;
-
-KEEP_FUNC MemfilesMenu::MemfilesMenu(Cursor& cursor)
-    : Menu(cursor), lines{{"file slot:", MEMFILE_SLOT_INDEX, "Select memfile slot"},
-                          {"save", MEMFILE_SAVE_INDEX, "Save memfile to slot", false},
-                          {"load", MEMFILE_LOAD_INDEX, "Load memfile from slot", false},
-                          {"delete", MEMFILE_DELETE_INDEX, "Delete memfile from slot", false}} {}
+KEEP_FUNC MemfilesMenu::MemfilesMenu(PermanantData& permanantData)
+    : Menu(permanantData.cursor), lines{{"file slot:", MEMFILE_SLOT_INDEX, "Select memfile slot"},
+                                        {"save", MEMFILE_SAVE_INDEX, "Save memfile to slot", false},
+                                        {"load", MEMFILE_LOAD_INDEX, "Load memfile from slot", false},
+                                        {"delete", MEMFILE_DELETE_INDEX, "Delete memfile from slot", false}},
+      l_fileNo{&permanantData.memfileIndex} {}
 
 MemfilesMenu::~MemfilesMenu() {}
 
@@ -26,17 +25,25 @@ void MemfilesMenu::draw() {
     }
 
     if (cursor.y == MEMFILE_SLOT_INDEX) {
-        if (GZ_getButtonRepeat(GZPad::DPAD_LEFT) && l_fileNo > 1) {
-            l_fileNo--;
-        } else if (GZ_getButtonRepeat(GZPad::DPAD_RIGHT) && l_fileNo < MAX_SAVE_SLOTS) {
-            l_fileNo++;
+        if (GZ_getButtonRepeat(GZPad::DPAD_LEFT)) {
+            if (*l_fileNo > 1) {
+                (*l_fileNo)--;
+            } else {
+                (*l_fileNo) = MAX_SAVE_SLOTS;
+            }
+        } else if (GZ_getButtonRepeat(GZPad::DPAD_RIGHT)) {
+            if (*l_fileNo < MAX_SAVE_SLOTS) {
+                (*l_fileNo)++;
+            } else {
+                (*l_fileNo) = 1;
+            }
         }
     }
 
     static Storage card;
     char fileBuf[10];
 
-    snprintf(fileBuf, sizeof(fileBuf), "twwgz_s%d", l_fileNo);
+    snprintf(fileBuf, sizeof(fileBuf), "twwgz_s%d", *l_fileNo);
     card.file_name = fileBuf;
     card.sector_size = SECTOR_SIZE;
     snprintf(card.file_name_buffer, sizeof(card.file_name_buffer), card.file_name);
@@ -63,12 +70,15 @@ void MemfilesMenu::draw() {
             if (card.result == Ready) {
                 GZ_deleteMemfile(card);
             }
+            cursor.y = 1;
             break;
         }
     }
-    lines[MEMFILE_SLOT_INDEX].printf(" <%d>", l_fileNo);
-
     bool exists = GZ_memfileExists(card);
+
+    lines[MEMFILE_LOAD_INDEX].disabled = !exists;
+    lines[MEMFILE_DELETE_INDEX].disabled = !exists;
+    lines[MEMFILE_SLOT_INDEX].printf(" <%d>", *l_fileNo);
 
     cursor.move(0, MENU_LINE_NUM - (exists ? 0 : 2));
     GZ_drawMenuLines(lines, cursor.y, MENU_LINE_NUM);

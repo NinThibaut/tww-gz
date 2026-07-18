@@ -28,13 +28,13 @@ void exit() {
 }  // namespace twwgz::modules
 
 void onCreate() {
-    if (!g_menuMgr->getPermanentData<Cursor>()) {
-        g_menuMgr->setPermanentData(new (-32) Cursor);
+    if (!g_menuMgr->getPermanentData<PermanantData>()) {
+        g_menuMgr->setPermanentData(new (-32) PermanantData);
     }
 }
 
 void onLoad() {
-    l_menu = new MemfilesMenu(*g_menuMgr->getPermanentData<Cursor>());
+    l_menu = new MemfilesMenu(*g_menuMgr->getPermanentData<PermanantData>());
     g_drawListener->addListener(onDraw);
 }
 
