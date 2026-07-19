@@ -16,7 +16,8 @@ KEEP_FUNC void GZ_turboInputs() {
         return;
     }
     if (g_moveLinkEnabled) {
-        moveLinkButtonsPressed = (mPadButton.mButton & CButton::Z) | (mPadButton.mButton & CButton::R) | (mPadButton.mButton & CButton::A) | (mPadButton.mButton & CButton::L);
+        moveLinkButtonsPressed = (mPadButton.mButton & CButton::Z) | (mPadButton.mButton & CButton::R) |
+                                 (mPadButton.mButton & CButton::A) | (mPadButton.mButton & CButton::L);
     }
     if (skipFrame) {
         mPadButton.mButton = CButton::B;
