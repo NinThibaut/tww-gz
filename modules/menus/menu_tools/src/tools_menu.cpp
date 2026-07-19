@@ -66,7 +66,8 @@ KEEP_FUNC ToolsMenu::ToolsMenu(Cursor& cursor)
           {"move link", MOVE_LINK_INDEX, "Move Link around freely by pressing L + R + Y", true,
            &g_tools[MOVE_LINK_INDEX].active},
           {"turbo controller", TURBO_INPUTS_INDEX, "Simulate turbo controller inputs", true,
-           &g_tools[TURBO_INPUTS_INDEX].active}} {}
+           &g_tools[TURBO_INPUTS_INDEX].active},
+          {"figurine check", FIGURINE_CHECK_INDEX, "Check if the picture you take will be accepted by Carlov to make a figurine", true, &g_tools[FIGURINE_CHECK_INDEX].active}} {}
 
 ToolsMenu::~ToolsMenu() {}
 

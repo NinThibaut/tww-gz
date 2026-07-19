@@ -174,6 +174,9 @@
 #define dStage_roomControl_c__mStayNo_addr 0x803e9f48
 #define dStage_roomControl_c__m_time_pass_addr 0x803e9f54
 
+/* d_snap */
+#define l_snap_addr 0x803d5bec
+
 /* d_s_play */
 #define tww_dScnPly_Draw_addr 0x8023218c
 
@@ -364,6 +367,9 @@
 #define dStage_roomControl_c__mStayNo_addr 0x803f6a78
 #define dStage_roomControl_c__m_time_pass_addr 0x803f6a84
 
+/* d_snap */
+#define l_snap_addr 0x803e26fc
+
 /* d_s_play */
 #define tww_dScnPly_Draw_addr 0x80234b9c
 
@@ -551,6 +557,9 @@
 /* d_stage */
 #define dStage_roomControl_c__mStayNo_addr 0x803fe278
 #define dStage_roomControl_c__m_time_pass_addr 0x803fe284
+
+/* d_snap */
+#define l_snap_addr 0x803ea024
 
 /* d_s_play */
 #define tww_dScnPly_Draw_addr 0x80239c24

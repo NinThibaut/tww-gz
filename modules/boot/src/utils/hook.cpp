@@ -19,6 +19,7 @@
 #include "rels/include/defines.h"
 #include "menus/menu_settings/include/settings_menu.h"
 #include "libtww/include/d/com/d_com_inf_game.h"
+#include "libtww/include/d/d_snap.h"
 
 #define HOOK_DEF(rettype, name, params)                                                                                \
     typedef rettype(*tww_##name##_t) params;                                                                           \
@@ -44,6 +45,7 @@ HOOK_DEF(void, onEventBit, (void*, uint16_t));
 HOOK_DEF(void, offEventBit, (void*, uint16_t));
 HOOK_DEF(void, onSwitch, (void*, int, int));
 HOOK_DEF(int, memory_to_card, (char*, int));
+HOOK_DEF(void, SetResult, (void*));
 
 int spawn_id_input = 0;
 bool g_flagLogEnabled = 0;
@@ -55,7 +57,7 @@ const char* g_stageName = nullptr;
 
 namespace Hook {
 
-static char buf[40];
+static char buf[50];
 static char g_stageNameBuffer[8];
 void onEventBitHook(void* addr, uint16_t pFlag) {
     if (g_flagLogEnabled) {
@@ -101,6 +103,52 @@ void onSwitchHook(void* addr, int pFlag, int i_roomNo) {
         FIFOQueue::push(buf, Queue, 0xFFFFFF00);
     }
     return onSwitchTrampoline(addr, pFlag, i_roomNo);
+}
+
+void SetResultHook(void* addr) {
+    SetResultTrampoline(addr);
+
+    if (!g_tools[FIGURINE_CHECK_INDEX].active) {
+        return;
+    }
+
+    int color;
+    u8 snapFigure = *(u8*)&l_snap.mFlag + 3;
+    u8 resultDetail = l_snap.mResult;
+
+    snprintf(buf, sizeof(buf), "Figurine ID : %x", snapFigure);
+    if (snapFigure != 0) {
+        color = 0x00FF0000;
+    } else {
+        color = 0xFF000000;
+    }
+    FIFOQueue::push(buf, Queue, color);
+
+    snprintf(buf, sizeof(buf), "Result detail : %x", resultDetail);
+    if (resultDetail == 0 || resultDetail == 3) {
+        color = 0x00FF0000;
+    } else {
+        color = 0xFF000000;
+    }
+    FIFOQueue::push(buf, Queue, color);
+
+    if (snapFigure == 0) {
+        snprintf(buf, sizeof(buf), "Cannot find which character is on the picture");
+        color = 0xFF000000;
+    } else if (resultDetail == 1) {
+        snprintf(buf, sizeof(buf), "The character's face is not on the picture");
+        color = 0xFF000000;
+    } else if (resultDetail == 2) {
+        snprintf(buf, sizeof(buf), "The picture is too zoomed in");
+        color = 0xFF000000;
+    } else if (resultDetail == 0) {
+        snprintf(buf, sizeof(buf), "Good picture");
+        color = 0x00FF0000;
+    } else if (resultDetail == 3) {
+        snprintf(buf, sizeof(buf), "Good picture despite bad zoom and no face");
+        color = 0x00FF0000;
+    }
+    FIFOQueue::push(buf, Queue, color);
 }
 
 void gameLoopHook(void) {
@@ -169,6 +217,7 @@ int dScnPly_DeleteHook(void* i_scene) {
 #define f_onEventBit onEventBit__11dSv_event_cFUs
 #define f_offEventBit offEventBit__11dSv_event_cFUs
 #define f_onSwitch onSwitch__12dSv_memBit_cFi
+#define f_SetResult SetResult__12dSnap_packetFv
 
 #ifdef NTSCU
 #define menu_data_path (char*)0x80362DAA
@@ -186,6 +235,7 @@ extern "C" {
 void f_onEventBit(void*, uint16_t);
 void f_offEventBit(void*, uint16_t);
 void f_onSwitch(void*, int, int);
+void f_SetResult(void*);
 }
 
 f32 g_savedMapSelectTime = 120.0f;
@@ -386,6 +436,7 @@ KEEP_FUNC void applyHooks() {
     APPLY_HOOK(offEventBit, &f_offEventBit, offEventBitHook);
     APPLY_HOOK(onSwitch, &f_onSwitch, onSwitchHook);
     APPLY_HOOK(memory_to_card, &memory_to_card__10dSv_info_cFPci, memory_to_cardHook);
+    APPLY_HOOK(SetResult, &f_SetResult, SetResultHook);
 #undef APPLY_HOOK
 }
 }  // namespace Hook
