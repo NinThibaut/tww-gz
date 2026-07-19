@@ -19,8 +19,8 @@ RUN sudo apt-get install -y gnupg
 # clang format
 RUN sudo wget https://apt.llvm.org/llvm.sh
 RUN sudo chmod +x llvm.sh
-RUN sudo ./llvm.sh 14
-RUN sudo apt install -y clang-format-14
+RUN sudo ./llvm.sh 15
+RUN sudo apt install -y clang-format-15
 
 # Install DevkitPPC
 # RUN sudo ln -sf /proc/self/mounts /etc/mtab
@@ -40,4 +40,4 @@ RUN echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME
 RUN chmod 0440 /etc/sudoers.d/$USERNAME
 USER vscode
 
-RUN python3 -m pip install Pillow
+RUN sudo apt install -y python3-pil
