@@ -106,4 +106,4 @@ private:
     void RemoveActorModRequest(u32 id);
 };
 
-extern SaveManager gSaveManager;
+extern SaveManager gSaveManager __attribute__((aligned(32)));
