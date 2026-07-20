@@ -111,7 +111,7 @@ void SetResultHook(void* addr) {
     if (!g_tools[FIGURINE_CHECK_INDEX].active) {
         return;
     }
-    
+
     FIFOQueue::push("", Queue, 0xFFFFFF00);
 
     int color;
