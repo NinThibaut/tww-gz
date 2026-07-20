@@ -49,6 +49,7 @@ enum MenuIndex {
     // Memory menu's sub menus
     MN_WATCHES_INDEX,
     MN_MEMORY_EDITOR_INDEX,
+    MN_MEMFILES_MENU_INDEX,
 
     // Practice menu's sub menus
     MN_ANY_OPTIMAL_SAVES_INDEX,
@@ -57,6 +58,7 @@ enum MenuIndex {
     MN_PST_SAVES_INDEX,
     MN_ANY_SAVES_INDEX,
     MN_PMG_SAVED_INDEX,
+    MN_HUNDO_SAVES_INDEX,
 
     // Scene menu's sub menus
     MN_COLLISION_VIEW_INDEX,

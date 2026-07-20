@@ -61,7 +61,9 @@ public:
      * @param args
      */
     template <typename... Args>
-    void dispatchAll(Args... args) requires std::invocable<Callback, Args...> {
+    void dispatchAll(Args... args)
+        requires std::invocable<Callback, Args...>
+    {
         for (Callback* cb : callbacks) {
             cb(args...);
         }

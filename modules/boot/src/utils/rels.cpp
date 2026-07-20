@@ -275,7 +275,7 @@ bool GZModule::close() {
 
     // If the REL was linked via fixed linking, then bss should be nullptr
     if (bss) {
-        delete[](char*) bss;
+        delete[] (char*)bss;
     }
 
     m_loaded = false;

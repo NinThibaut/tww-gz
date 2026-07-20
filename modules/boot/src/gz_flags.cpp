@@ -3,10 +3,12 @@
 #include "controller.h"
 #include "scene.h"
 #include "tools.h"
+#include "save_manager.h"
 #include "rels/include/defines.h"
 #include "libtww/include/m_Do/m_Do_printf.h"
 #include "libtww/include/m_Do/m_Do_controller_pad.h"
 #include "libtww/include/d/d_s_play.h"
+#include "libtww/include/f_op/f_op_scene_req.h"
 
 GZFlag g_gzFlags[MAX_GZ_FLAGS] = {
     {&g_sceneFlags[MUTE_BGM_INDEX].active, GAME_LOOP, GZ_disableBGM, GZ_enableBGM},

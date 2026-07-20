@@ -71,12 +71,15 @@ public:
     special* mSpecials;
 
     static bool s_injectSave;
+    static bool s_injectMemfile;
 
 public:
     static void injectSave(void* buffer);
+    static void injectMemfile(void* data);
     static void loadSave(uint32_t id, const char* category, special* i_specials = nullptr, int size = 0);
     static void loadSavefile(const char* fileName);
     static void triggerLoad(uint32_t id, const char* category, special i_specials[], int size);
+    static void prepareStage();
     static void defaultLoad();
     static void loadData();
 
@@ -103,4 +106,4 @@ private:
     void RemoveActorModRequest(u32 id);
 };
 
-extern SaveManager gSaveManager;
+extern SaveManager gSaveManager __attribute__((aligned(32)));

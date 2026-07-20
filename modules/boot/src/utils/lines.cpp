@@ -49,7 +49,7 @@ KEEP_FUNC void GZ_drawMenuLines(Line input_lines[], uint32_t cursor, uint32_t LI
 
         // fade line/hide descriptions for lines the cursor isn't on
         if (input_lines[i].idx != cursor) {
-            cursor_color = 0xFFFFFFFF;
+            cursor_color = input_lines[i].disabled ? 0x7F7F7FFF : 0xFFFFFFFF;
             description_alpha = 0x00;
         }
         description_color |= description_alpha;

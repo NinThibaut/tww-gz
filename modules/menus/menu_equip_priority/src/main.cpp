@@ -29,7 +29,7 @@ void exit() {
 
 void onCreate() {
     if (!g_menuMgr->getPermanentData<Cursor>()) {
-        g_menuMgr->setPermanentData(new Cursor);
+        g_menuMgr->setPermanentData(new (-32) Cursor);
     }
 }
 

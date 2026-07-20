@@ -18,6 +18,7 @@ static char l_filename[128];
 SaveManager gSaveManager;
 
 bool SaveManager::s_injectSave = false;
+bool SaveManager::s_injectMemfile = false;
 
 void SaveManager::injectSave(void* src) {
     memcpy(&g_dComIfG_gameInfo.info.mSavedata.mPlayer.mPlayerStatusA, src, 0x18);
@@ -40,6 +41,11 @@ void SaveManager::injectSave(void* src) {
     memcpy(&g_dComIfG_gameInfo.info.mSavedata.mOcean, (char*)src + 0x5b4, 0x64);
     memcpy(&g_dComIfG_gameInfo.info.mSavedata.mEvent, (char*)src + 0x618, 0x100);
 
+    dComIfGs_getSave(g_dComIfG_gameInfo.info.mDan.mStageNo);
+}
+
+void SaveManager::injectMemfile(void* src) {
+    memcpy(&g_dComIfG_gameInfo.info.mSavedata, src, sizeof(dSv_save_c));
     dComIfGs_getSave(g_dComIfG_gameInfo.info.mDan.mStageNo);
 }
 
@@ -85,6 +91,13 @@ KEEP_FUNC void SaveManager::triggerLoad(uint32_t id, const char* category, speci
     loadSave(id, category, i_specials, size);
 
     SaveManager::loadSavefile(l_filename);
+
+    SaveManager::prepareStage();
+
+    s_injectSave = true;
+}
+
+KEEP_FUNC void SaveManager::prepareStage() {
     dSv_save_c* save = (dSv_save_c*)MEMFILE_BUF;
 
     // Default to normal arrow. The special callbacks will handle other cases.
@@ -102,8 +115,6 @@ KEEP_FUNC void SaveManager::triggerLoad(uint32_t id, const char* category, speci
     if (gSaveManager.mPracticeFileOpts.inject_options_during_load != nullptr) {
         gSaveManager.mPracticeFileOpts.inject_options_during_load();
     }
-
-    s_injectSave = true;
 }
 
 // runs at the beginning of phase_1 of dScnPly__phase_1 load sequence
@@ -147,6 +158,12 @@ KEEP_FUNC void SaveManager::loadData() {
         }
 
         s_injectSave = false;
+    }
+
+    if (s_injectMemfile) {
+        SaveManager::injectMemfile(MEMFILE_BUF);
+
+        s_injectMemfile = false;
     }
 }
 

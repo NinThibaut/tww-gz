@@ -8,6 +8,7 @@
 #include "watches.h"
 #include "pos_settings.h"
 #include "menu.h"
+#include "memfiles.h"
 
 static_assert(sizeof(CARDFileInfo) == 0x14);
 static_assert(sizeof(CARDStat) == 0x6C);
@@ -80,3 +81,6 @@ void GZ_deleteMemfile(Storage& card);
 void GZ_loadMemCard(Storage& card);
 void GZ_loadMemfile(Storage& card);
 void GZ_loadGZSave(bool& card_load);
+bool GZ_memfileExists(Storage& card);
+int32_t GZ_readMemfile(Storage* storage, PositionData& posData, int32_t sector_size);
+void GZ_loadPositionData(PositionData&);

@@ -6,6 +6,7 @@ enum SettingsIndex {
     WATCHES_INDEX,
     MEM_EDITOR_INDEX,
     FLAG_LOGGER_INDEX,
+    MEMFILES_INDEX,
 
     MEMORY_COUNT
 };

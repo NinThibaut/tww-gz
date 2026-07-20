@@ -19,6 +19,8 @@ enum ToolsIndex {
     ROLL_CLIP_INDEX,
     PAUSE_BUFFER_INPUT_INDEX,
     MOVE_LINK_INDEX,
+    TURBO_INPUTS_INDEX,
+    FIGURINE_CHECK_INDEX,
 
     // Entry used as a counter
     TOOLS_COUNT
