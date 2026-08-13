@@ -67,7 +67,6 @@ struct ActorModEntry {
 class SaveManager {
 public:
     PracticeFileOpts mPracticeFileOpts;
-    PracticeSaveInfo mPracticeSaveInfo __attribute__((aligned(32)));
     special* mSpecials;
 
     static bool s_injectSave;
@@ -106,4 +105,4 @@ private:
     void RemoveActorModRequest(u32 id);
 };
 
-extern SaveManager gSaveManager __attribute__((aligned(32)));
+extern SaveManager gSaveManager;

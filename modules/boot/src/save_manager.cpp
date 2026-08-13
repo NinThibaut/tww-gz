@@ -54,21 +54,19 @@ void SaveManager::loadSave(uint32_t id, const char* category, special i_specials
 
     // Load the corresponding file path and properties
     snprintf(l_filename, sizeof(l_filename), "twwgz/save_files/%s.bin", category);
-    loadFile(l_filename, &gSaveManager.mPracticeSaveInfo, sizeof(gSaveManager.mPracticeSaveInfo),
-             id * sizeof(gSaveManager.mPracticeSaveInfo));
 
+    alignas(32) char buffer[32];
+
+    loadFile(l_filename, buffer, sizeof(buffer),
+             id * sizeof(buffer));
+    
     snprintf(l_filename, sizeof(l_filename), "twwgz/save_files/%s/%s.bin", category,
-             gSaveManager.mPracticeSaveInfo.filename);
+             buffer);
 
     gSaveManager.mPracticeFileOpts.inject_options_during_load = nullptr;
     gSaveManager.mPracticeFileOpts.inject_options_after_load = nullptr;
     g_fifoVisible = true;
     g_menuMgr->hide();
-
-    // TODO: this isnt used, remove relevant pieces
-    if (gSaveManager.mPracticeSaveInfo.requirements) {
-        gSaveManager.mPracticeFileOpts.inject_options_after_counter = gSaveManager.mPracticeSaveInfo.counter;
-    }
 
     // If the selected file was a special, run the special callbacks
     if (i_specials) {

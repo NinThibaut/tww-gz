@@ -99,6 +99,8 @@ KEEP_FUNC int GZ_validSpawnPoint(char* stage, int room, int point) {
             return 102;
         }
         return 0;
+    } else if (strcmp(stage, "GanonM") == 0) {
+        return 0;
     }
     if (point == -1) {
         return 0;
