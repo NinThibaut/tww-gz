@@ -53,7 +53,8 @@ Enable and disable specific cheats. Some cheats are applied constantly, and some
 | Door cancel       | Hold L+D-pad left to get door cancel               
 | Quarter heart     | Hold R+D-pad left to reduce health to quarter heart
 | Fast movement     | Hold D-pad left to get super speed                 
-| Upcharge          | Hold X + Z to get negative speed for upcharge      
+| Upcharge          | Hold X + Z to get negative speed for upcharge     
+| Tingle Balloon    | Press L+R+D-pad up to activate a tingle balloon
 
 </details>  
 
@@ -289,6 +290,8 @@ TODO: Explain more about how this works
 
 Flag Logger: Output triggered events/switches to the bottom left of the screen
 
+Memfiles : Save and load custom save files 
+
 ---
 
 ### Practice
@@ -412,6 +415,79 @@ The following categories are supported. Click the dropdown to view a list of eac
 </details>
 
 <details>
+<summary>PST</summary>
+<br>
+
+| Save                              | Description
+| :--                               | :--
+| Manual Superswim                  | After intro at bottom of tower
+| Early Diamond Steppe              | After MSS at bottom of tower at Outset
+| Forsaken Fortress 1 Swim          | Outside Diamond Steppe, about to swim to NFI submarine
+| Forsaken Fortress 1 Chest Storage | FF1 in yellow rupee chest room
+| Greatfish Swim                    | At Windfall after getting sail for swim to Greatfish
+| Wallet Swim                       | At Greatfish after the cutscene for swim to NFI
+| Ropes 2                           | In pirate ship, ropes 2 state
+| Forest Haven Swim                 | At Windfall for swim to Forest Haven
+| Early Leaf Hover                  | Outside Forest Haven for hover to higher entrance
+| Deku Tree Cutscene Skip           | Inside Forest Haven upper spawn for cutscene skip
+| Forbidden Woods                   | Start of Forbidden Woods
+| Kalle Demos                       | Kalle Demos boss fight
+| Enter Dragon Roost Cavern         | Outside Forest Haven for swim to ETI/DRI
+| Dragon Roost Cavern               | Start of DRC
+| Dragon Roost Cavern Miniboss      | Outside area of DRC
+| Gohma                             | Gohma boss fight
+| Bird's Peak Rock                  | At DRI after pearl cutscene for swim to BPR
+| Ghost Ship 1                      | At Windfall for swim to Crescent Moon ghost ship
+| Islet of Steel Swim               | At NTI for swim to IOS
+| Nayru's Pearl                     | At Needle Rock Isle for swim to Outset for Nayru's Pearl
+| Enter Tower of the Gods           | Outside Jabun's cave for swim to STI
+| Tower of the Gods                 | Start of TotG
+| Darknut                           | TotG Darknut miniboss
+| Gohdan                            | Gohdan boss fight
+| Puzzle Skip                       | Inside Hyrule Castle for puzzle skip
+| Hyrule Escape                     | Inside Hyrule Castle after Master Sword for Hyrule escape
+| Cyclos                            | Outside TotG for sail to NTI for Cyclos
+| Forsaken Fortress 2 Swim          | At Tingle Island near Tingle for swim to FF2
+| Phantom Ganon                     | Phantom Ganon fight miniboss
+| Enter Helmaroc                    | After Phantom Ganon fight for chest storage climb
+| Helmaroc Skip                     | In Helmaroc boss fight for Helmaroc skip
+| Early Wind God's Aria             | Inside Mother and Child after Hyrule 2 for early WGA
+| Power Bracelets                   | At Gale Isle for swim to Fire Mountain
+| Earth God's Lyrics                | At Shark Isle for swim to Headstone
+| Stonewatcher Swim                 | At Headstone for swim to Stonewatcher
+| Stonewatcher Cave                 | In Stonewatcher cave for Triforce Chart
+| Ghost Ship 2                      | At Stonewatcher for swim to Diamond Steppe ghost ship
+| Needle Rock Chart                 | In Diamond Steppe quadrant for sailing to Needle Rock
+| Medli                             | At DRI for chest storage to Medli
+| Eastern Triangle Island Swim      | At DRI after getting Medli for swim to EFI/Greatfish
+| Earth Temple Swim                 | At Greatfish for swim to Earth Temple
+| Earth Temple                      | Start of Earth Temple
+| Mirror Shield                     | In Earth Temple in the shortcut room for ZH to miniboss
+| Song Stone Skip                   | In Earth Temple in song stone room
+| Jalhalla                          | Jalhalla boss fight
+| Makar                             | At Headstone, about to get Makar
+| Iron Boots                        | At Forest Haven after getting Makar for swim to Ice Ring
+| Wind Temple                       | Start of Wind Temple
+| Wizzrobe Miniboss                 | Wizzrobe miniboss fight
+| After Hookshot                    | In Wind Temple after miniboss
+| Molgera                           | Molgera boss fight
+| Overlook Swim                     | At Gale Isle for swim to Overlook
+| Overlook Cave                     | In Overlook cave for Triforce Chart
+| Private Oasis                     | At Private Oasis for chest storage early cabana
+| Gale Isle                         | At Tingle Island for swim to Gale Isle
+| Savage Labyrinth                  | Start of Savage Labyrinth
+| Savage Labyrinth Floor 10         | In first Savage Labyrinth break floor
+| Savage Labyrinth Floor 20         | In second Savage Labyrinth break floor
+| Triforce                          | At Tingle Island for salvaging the last 3 Triforce shards
+| Hyrule Darknuts                   | In Master Sword chamber for Darknut fight
+| Barrier Cutscene Skip             | Outside Hyrule Castle for barrier cutscene skip
+| Trials Skip                       | Inside Ganon's Tower, in trials room for trials skip
+| Puppet Ganon                      | Puppet Ganon boss fight
+| Ganondorf                         | Ganondorf boss fight
+
+</details>
+
+<details>
 <summary>Any% (Bombs First, No PG Skip)</summary>
 <br>  
  
@@ -432,6 +508,195 @@ The following categories are supported. Click the dropdown to view a list of eac
 | Puppet Ganon Fight          | Bottom of Ganondorf's Bedroom, at start of Puppet Ganon fight
 | Morth Hover                 | Inside Ganondorf's Bedroom after fight, at top of room
 | Ganondorf                   | On top of Ganondorf's Tower, at start of Ganondorf fight
+
+</details>
+
+<details>
+<summary>PMG</summary>
+<br>
+
+| Save                          | Description
+| :--                           | :--
+| After Intro                   | Just after the intro, at bottom of watchtower
+| Orca                          | Inside Orca's house, about to do sword tutorial
+| Forest of Fairies             | Inside Forest of Fairies, about to rescue Tetra
+| Ropes 1                       | Inside pirate ship, about to play ropes 1 minigame
+| Early Light Cycle             | Outside ship, before barrel launch cutscene
+| Forsaken Fortress 1           | At start of FF1
+| FF1 Interior                  | FF1 in the rope swing room
+| Windfall                      | At Windfall Island, just finished talking to Korl
+| Zephos Skip                   | At DRI, about to perform Zephos skip for Wind's Requiem
+| Submarine Swim                | At DRI, about to swim to Bomb Island submarine
+| Delivery Bag Skip             | At DRI, with chest storage, about to climb DRI to skip delivery bag
+| Dragon Roost Cavern           | Start of DRC
+| DRC Chest Storage             | In DRC map room, about to get chest storage
+| DRC Outside Climb             | In DRC outside area, about to climb DRC with chest storage
+| DRC Miniboss                  | In miniboss room, outside DRC
+| DRC Boss Key Skip             | Inside DRC in boss door room for BK skip
+| Gohma                         | Gohma boss fight
+| Forest Haven Swim             | At DRI, after Din's Pearl cutscene, about to swim to FH
+| Deku Tree Cutscene Skip       | Inside FH, about to perform DTCS
+| Enter Forbidden Woods         | Inside Forest Haven, about to leaf to FW
+| Forbidden Woods               | Start of Forbidden Woods
+| FW Small Key Skip             | In main room of FW, about to leaf to the upper part of FW
+| FW Miniboss                   | Molduga miniboss room
+| FW Boss Key Skip              | In main room of FW, near warp pot, about to store Morth Pit chest
+| Kalle Demos                   | Kalle Demos boss fight
+| Placing Pearls                | Outside FH for swim to ETI/NTI
+| Islet of Steel Swim           | At NTI, about to swim to Islet of Steel
+| Windfall Swim                 | At Greatfish, about to swim to Windfall for bombs
+| Ropes 2                       | Inside pirate ship, about to get bombs
+| Nayru's Pearl                 | On Windfall docks, about to swim to Outset for Nayru's Pearl
+| Enter Tower of the Gods       | Outside Jabun's cave, about to swim to STI
+| Tower of the Gods             | Entrance of Tower of the Gods
+| TotG Second Statue            | Inside TotG second statue room
+| TotG Miniboss                 | Darknut miniboss fight
+| TotG Third Statue             | In the room before the third TotG statue
+| Gohdan                        | Gohdan boss fight
+| Puzzle Skip                   | Inside Hyrule Castle for puzzle skip
+| Hyrule Escape                 | Inside Hyrule Castle after Master Sword for Hyrule escape
+| Forsaken Fortress 2 Swim      | On NTI, about to swim to FF2
+| Phantom Ganon                 | Phantom Ganon miniboss fight
+| Enter Helmaroc                | After Phantom Ganon fight for chest storage climb
+| Helmaroc                      | At the top of FF2 tower, about to start the Helmaroc fight
+| Barrier Skip                  | Outside Hyrule Castle, about to do barrier skip
+| Trials Skip                   | Inside Ganon's Tower, about to do trials skip
+| Puppet Ganon Fight            | Inside Ganondorf's bedroom, at start of Puppet Ganon fight
+| Morth Hover                   | At the top of Ganondorf's bedroom for Morth hover
+| Ganondorf                     | On top of Ganondorf's tower, at start of Ganondorf fight
+
+</details>
+
+<details>
+<summary>100%</summary>
+<br>
+
+| Save                              | Description
+| :--                               | :--
+| Mailgame                          | About to start mail minigame for note to mom
+| Dragon Roost Cavern               | At the beginning of DRC
+| Pot Push Storage                  | About to get chest storage in DRC
+| Boko Room                         | Inside 3 Bokos room
+| DRC Miniboss                      | Outside ship, before barrel launch cutscene
+| DRC Boss Key Skip                 | Skip DRC boss key with chest storage
+| Zephos Skip                       | About to skip Zephos cutscene
+| DRI to Windfall Swim              | After Zephos skip, about to swim to Windfall
+| Forest Haven Swim 1               | At Windfall, about to swim to Forest Haven
+| Deku Tree Cutscene Skip           | Inside FH, about to perform DTCS
+| Leaf to Forest of Fairies         | At Outset Island, about to leaf to FoF
+| FoF Fairy Clip                    | About to roll clip inside FoF great fairy
+| Leaf to Invisible Pirate Ship     | At Outset, about to leaf to pirate ship
+| Ropes 1                           | Inside pirate ship, for spoils bag
+| FF1 Door Teleport                 | On pirate ship at FF1, about to store ship door
+| Ropes 2                           | Inside pirate ship, for bombs
+| FF1                               | At the bottom of FF1
+| Windfall 1                        | 1st trip to Windfall, about to start hide and seek
+| Forest Haven Swim 2               | At Windfall docks, about to swim to FH
+| Enter Forbidden Woods             | Inside Forest Haven, about to leaf to FW
+| Forbidden Woods                   | Start of Forbidden Woods
+| FW Small Key Skip                 | Start of Forbidden Woods
+| FW Miniboss                       | In FW miniboss room, about to fight Flying Mothula for boomerang
+| FW Basement                       | In FW basement for chart chest
+| FW BK Skip                        | In double Mothula room, for chest storage BK skip
+| Kalle Demos                       | Forbidden Woods boss
+| Placing Pearls                    | At Forest Haven, about to swim to Eastern Triangle
+| Northern Triangle Swim            | At Eastern Triangle, about to swim to Northern Triangle
+| Islet of Steel Swim               | At Northern Triangle, about to swim to Islet of Steel
+| Outset Swim                       | At Greatfish Isle, about to swim to Outset Island
+| Outset Bomb Ledge Clip            | Bomb ledge clip to enter Jabun's cave
+| Southern Triangle Swim            | At Outset, about to swim to Southern Triangle
+| Tower of the Gods                 | Start of Tower of the Gods
+| TotG 2nd Statue                   | In 2nd statue room
+| TotG Miniboss                     | Tower of the Gods Darknut miniboss fight
+| TotG Scales Room                  | In TotG scales room before small key
+| Gohdan                            | Tower of the Gods boss
+| Cyclos                            | About to fight Cyclos for Ballad of Gales
+| Crescent Moon Swim                | At NTI, about to swim to Crescent Moon sub
+| Crescent Moon Submarine           | Inside Crescent Moon submarine
+| FF2 Swim                          | Double storage superswim from Crescent Moon
+| Helmaroc Skip                     | Skip Helmaroc to watch Hyrule 2 cutscenes
+| Puzzle Skip                       | In Hyrule, before Tetra to Zelda cutscenes
+| Barrier Skip                      | Outside Hyrule Castle, for barrier skip
+| Trials Skip                       | In trials hub room, inside Ganon's Tower
+| Helmaroc Cutscene Skip            | About to skip Helmaroc cutscene to prevent a crash
+| Helmaroc                          | About to fight Helmaroc
+| Windfall 2                        | 2nd trip to Windfall
+| Gale Island Swim 1                | At Windfall, about to swim to Gale Island for WGA
+| Fire Mountain Swim                | At Gale Island, about to swim to Fire Mountain for power bracelets
+| Bird's Peak Rock Swim             | At Fire Mountain, about to swim to Bird's Peak Rock for Triforce Chart 3
+| Ice Ring Swim                     | At Bird's Peak Rock, about to swim to Ice Ring for Iron Boots and Treasure Chart 36
+| Two Eye Swim                      | At Ice Ring Isle, about to swim to Two Eye Reef for double magic octo
+| Two Eye Big Octo                  | At Two Eye, about to fight double magic big octo
+| Early Earth Temple                | Bomb push clip to enter Earth Temple
+| Earth Temple                      | Start of Earth Temple
+| Earth Temple Chu Room             | Earth Temple third room
+| Song Stone Skip                   | In basement, about to skip 1st song stone
+| Earth Temple Floormasters         | In Floormaster's room, for Treasure Chart 20
+| Earth Temple Mirror Room          | In Many Mirrors room, about to clip in 3 Stalfos room
+| Earth Temple Boss Key Skip        | Leaf pump to boss door
+| Jalhalla                          | Earth Temple boss
+| Horseshoe Swim                    | At Headstone Island, about to swim to Horseshoe for Treasure Chart 8
+| Play Golf                         | Golf holes 1 and 2 skip
+| Horseshoe Chest Storage           | Store heart piece chest to enter Diamond Steppe
+| Inside Diamond Steppe             | Inside Diamond Steppe Island for Ghost Ship Chart
+| Three Eye Swim                    | At Diamond Steppe, about to swim to Three Eye Reef for Chart 32 and heart piece
+| Forest Water Shark Island Swim    | Start of the Forest Water segment
+| Forest Water Needle Rock Swim     | At Shark Isle, about to swim to Needle Rock for Chart 16
+| Five Eye Swim                     | At Needle Rock Isle, about to swim to Five Eye Reef for Chart 41
+| Five Eye                          | Clear 5 Eye Reef for Chart 41
+| Eastern Fairy Swim                | At Five Eye, about to swim to Eastern Fairy Island for bomb upgrade and Chart 40
+| Gale Island Swim 2                | At Windfall, about to swim to Gale Island with double storage
+| Wind Temple                       | Start of Wind Temple
+| Wind Temple Miniboss              | Wind Temple miniboss room
+| Wind Temple Spiky Room            | Break floors for chest
+| Wind Temple Locked Room           | Big circular room
+| Molgera                           | Wind Temple boss
+| Star Island Swim                  | At Gale Island, about to swim to Star Island
+| Star Island Cave                  | Inside Star Island cave for heart piece
+| Northern Fairy Swim               | At Star Island, about to swim to Northern Fairy Island for Chart 22
+| Ghost Ship                        | Farm rupees inside Ghost Ship
+| Spectacle Island Minigame         | Spectacle Island minigame for heart piece and Chart 17
+| Tingle Island Big Octo            | About to fight Tingle Island octo for heart piece
+| Stonewatcher Swim                 | At Tingle Island, about to swim to Stonewatcher for Triforce Chart 7
+| Stonewatcher Cave                 | Inside Stonewatcher cave
+| Six Eye Swim                      | Swim to Six Eye Reef from Stonewatcher lookout platform
+| Six Eye Submarine                 | Inside Six Eye Reef submarine
+| Cyclops Reef                      | Clear Cyclops Reef for Chart 21
+| Pawprint Swim                     | At Cyclops Reef, about to swim to Pawprint Island for heart piece
+| Overlook Swim                     | At Pawprint, about to swim to Overlook Island for Triforce Chart 9
+| Overlook Cave                     | Inside Overlook Island cave
+| Savage Labyrinth                  | Start of Savage Labyrinth
+| Savage 10                         | Savage Labyrinth 10th floor
+| Savage 20                         | Savage Labyrinth 20th floor
+| Savage Chest                      | Farm rupees before getting Triforce Chart 6
+| Orca 500                          | Hit an old man 500 times
+| Pig Yeet                          | Pig yeeeeet
+| Headstone Sub Swim                | At Outset Island, about to swim to Headstone submarine for Chart 14
+| Angular Swim                      | At Headstone, about to swim to Angular Isles for heart piece
+| Bomb Island Sub Swim              | At Angular, about to swim to Bomb Island submarine for Bottle 3
+| Bomb Island Cave                  | Inside Bomb Island cave
+| FCP Swim                          | At Bomb Island, about to swim to Flight Control Platform for heart piece
+| Mother and Child Swim 1           | At Windfall Island, about to swim to Mother and Child Isles
+| Four Eye Swim                     | At Mother and Child, about to swim to Four Eye Reef for Chart 19
+| Western Fairy Swim                | At Four Eye, about to swim to Western Fairy Island for quiver upgrade
+| Rock Spire Swim                   | Peg storage on Western Fairy Island
+| Rock Spire Cave                   | Inside Rock Spire cave
+| Forest Haven HP on Isle FW2       | Start of the Forest Water 2 segment, about to get small island heart piece
+| Cabana Swim FW2                   | At Forest Haven, about to swim to Private Oasis for Chart 27 and Triforce Chart 2
+| Inside Cabana FW2                 | Inside cabana for Triforce Chart 2
+| Tingle Island Swim FW2            | At Private Oasis, about to swim (or warp) to Tingle Island
+| Gale Island Swim 3 FW2            | At Tingle Island, about to swim to Gale Island for Shard 2
+| Seven Star Octo FW2               | Seven Star Isles for heart piece and Shard 7
+| Two Eye Swim 2 FW2                | At Southern Triangle, about to swim to 2 Eye Reef for Shard 8 and Chart 13
+| Two Eye Reef FW2                  | Clear Two Eye Reef
+| Five Star Swim FW2                | At Two Eye, about to swim to Five Star submarine for heart piece
+| Five Star Chest Storage FW2       | Get storage on top of Five Star submarine
+| Thorned Fairy Swim FW2            | Superswim to Thorned Fairy from Cliff Plateau Isles
+| Mother and Child Swim 2 FW2       | Trade postman statue with Goron at Mother and Child Isles, end of the Forest Water 2 segment
+| Six Eye Reef                      | Clear 6 Eye Reef
+| FF3 Swim                          | Superswim to Forsaken Fortress 3 from Six Eye Reef
+| Puppet Ganon Skip                 | Skip or fight Puppet Ganon
+| Ganondorf                         | Ganondorf boss fight
 
 </details>
 
@@ -518,3 +783,6 @@ Moveable Lists: Main Menu, FIFO Queue, Link Debug Info, Time Display, Input View
 | Room Reload/Void Out       | Reload room by void out with L + R + B + Start
 | Roll Clip Trainer          | Train roll clip timing with an OSD
 | Pause Buffer Input Trainer | Train pause buffered input timing with an OSD
+| Move Link                  | Move Link around freely by pressing L + R + Y
+| Turbo Controller           | Simulate turbo controller inputs by holding a button
+| Figurine Checker           | Check if the picture you take will be accepted by Carlov to make a figurine
