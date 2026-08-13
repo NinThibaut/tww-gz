@@ -57,11 +57,9 @@ void SaveManager::loadSave(uint32_t id, const char* category, special i_specials
 
     alignas(32) char buffer[32];
 
-    loadFile(l_filename, buffer, sizeof(buffer),
-             id * sizeof(buffer));
-    
-    snprintf(l_filename, sizeof(l_filename), "twwgz/save_files/%s/%s.bin", category,
-             buffer);
+    loadFile(l_filename, buffer, sizeof(buffer), id * sizeof(buffer));
+
+    snprintf(l_filename, sizeof(l_filename), "twwgz/save_files/%s/%s.bin", category, buffer);
 
     gSaveManager.mPracticeFileOpts.inject_options_during_load = nullptr;
     gSaveManager.mPracticeFileOpts.inject_options_after_load = nullptr;
